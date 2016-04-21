@@ -13,7 +13,7 @@ use \Sizzle\Bacon\Database\{
 class EmailListTest
 extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Tests\Traits\User;
+    use \Sizzle\Bacon\Tests\Traits\User;
 
     /**
      * Requires the util.php file of functions

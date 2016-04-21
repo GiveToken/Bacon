@@ -10,7 +10,7 @@ use Sizzle\Bacon\Database\City;
  */
 class CityTest extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Tests\Traits\City;
+    use \Sizzle\Bacon\Tests\Traits\City;
 
     protected $existing_city;
 

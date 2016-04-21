@@ -13,8 +13,8 @@ use Sizzle\Bacon\Database\{
  */
 class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Tests\Traits\Organization;
-    use \Sizzle\Tests\Traits\RecruitingToken;
+    use \Sizzle\Bacon\Tests\Traits\Organization;
+    use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
 
     /**
      * Requires the util.php file of functions

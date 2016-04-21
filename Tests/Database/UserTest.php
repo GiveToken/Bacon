@@ -11,8 +11,8 @@ use \Sizzle\Bacon\Database\User;
 class UserTest
 extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Tests\Traits\User;
-    use \Sizzle\Tests\Traits\Organization;
+    use \Sizzle\Bacon\Tests\Traits\User;
+    use \Sizzle\Bacon\Tests\Traits\Organization;
 
     /**
      * Requires the util.php file of functions

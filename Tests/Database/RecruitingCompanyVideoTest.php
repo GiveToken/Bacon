@@ -13,7 +13,7 @@ use \Sizzle\Bacon\Database\{
 class RecruitingCompanyVideoTest
 extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Tests\Traits\RecruitingToken;
+    use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
 
     /**
      * Requires the util.php file of functions

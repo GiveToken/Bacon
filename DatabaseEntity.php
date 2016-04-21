@@ -7,7 +7,7 @@ namespace Sizzle\Bacon;
 class DatabaseEntity
 implements \JsonSerializable
 {
-    use \Sizzle\Traits\CamelToUnderscore;
+    use \Sizzle\Bacon\Text\CamelToUnderscore;
 
     protected $id;
     protected $created;
