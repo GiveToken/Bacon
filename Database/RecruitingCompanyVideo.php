@@ -39,7 +39,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
     public function getByRecruitingTokenLongId(string $long_id)
     {
         $return = array();
-        $long_id = escape_string($long_id);
+        $long_id = $this->escape_string($long_id);
         $query = "SELECT recruiting_company_video.id,
                   recruiting_company_video.source,
                   recruiting_company_video.source_id

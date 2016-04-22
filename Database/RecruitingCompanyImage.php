@@ -58,7 +58,7 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     public function getByRecruitingTokenLongId(string $long_id)
     {
         $return = array();
-        $long_id = escape_string($long_id);
+        $long_id = $this->escape_string($long_id);
         $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id

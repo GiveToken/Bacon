@@ -21,7 +21,7 @@ implements \JsonSerializable
     public function __construct($id = null)
     {
         if ($id !== null && strlen($id) > 0) {
-            $id = escape_string($id);
+            $id = $this->escape_string($id);
             $sql = "SELECT * FROM {$this->tableName()} WHERE id = '$id'";
             $object = execute_query($sql)->fetch_object(get_class($this));
             if (isset($object)) {
@@ -99,7 +99,7 @@ implements \JsonSerializable
         foreach (get_object_vars($this) as $key => $value) {
             if ($key !== 'readOnly' && !in_array($key, $this->readOnly) && isset($value)) {
                 $columns .= $comma.'`'.$key.'`';
-                $values .= $comma."'".escape_string($value)."'";
+                $values .= $comma."'".$this->escape_string($value)."'";
                 $comma = ', ';
             }
         }
@@ -118,7 +118,7 @@ implements \JsonSerializable
             if ($key !== 'readOnly' && !in_array($key, $this->readOnly)) {
                 $sql .= $comma.'`'.$key.'`'." = ";
                 if (strlen($value) > 0) {
-                    $sql .= "'".escape_string($value)."'";
+                    $sql .= "'".$this->escape_string($value)."'";
                 } else {
                     $sql .= 'NULL';
                 }
@@ -158,6 +158,20 @@ implements \JsonSerializable
             if ('readOnly' != $key) {
                 unset($this->$key);
             }
+        }
+    }
+
+    /**
+     * Escapes the provided string
+     *
+     * @param string $string - string to escape
+     *
+     * @return mixed - escaped string or nothing if no connection
+     */
+    public function escape_string($string)
+    {
+        if (isset(Connection::$mysqli)) {
+            return Connection::$mysqli->real_escape_string($string);
         }
     }
 }

@@ -23,7 +23,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
             if ($key == null || !in_array($key, array('id','long_id'))) {
                 $key = 'id';
             }
-            $value = escape_string($value);
+            $value = $this->escape_string($value);
             $token = execute_query("SELECT *
               FROM organization
               WHERE $key = '$value'"
@@ -49,7 +49,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
         if (isset($this->id)) {
             $settable = ['name', 'website', 'paying_user'];
             if (in_array($var, $settable)) {
-                $val = escape_string($val);
+                $val = $this->escape_string($val);
                 $sql = "UPDATE organization SET $var = '$val' WHERE id = '{$this->id}'";
                 if (1 == update($sql)) {
                     $this->$var = $val;

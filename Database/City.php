@@ -126,7 +126,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
      */
     public function match10(string $part)
     {
-        $part = escape_string($part);
+        $part = $this->escape_string($part);
         $cities = execute_query(
             "SELECT * FROM city
              WHERE name LIKE '$part%'

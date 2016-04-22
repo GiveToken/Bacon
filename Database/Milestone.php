@@ -22,7 +22,7 @@ class Milestone extends \Sizzle\Bacon\DatabaseEntity
                       FROM milestone
                       WHERE id = '$milestone'";
         } else {
-            $milestone = escape_string($milestone);
+            $milestone = $this->escape_string($milestone);
             $query = "SELECT id, name, created
                       FROM milestone
                       WHERE name = '$milestone'";

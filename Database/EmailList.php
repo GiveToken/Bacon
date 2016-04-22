@@ -26,7 +26,7 @@ class EmailList extends \Sizzle\Bacon\DatabaseEntity
                     AND deleted IS NULL"
                 )->fetch_object("Sizzle\Bacon\Database\EmailList");
             } elseif ($key == 'name') {
-                $value = escape_string($value);
+                $value = $this->escape_string($value);
                 $token = execute_query(
                     "SELECT * FROM email_list
                     WHERE name = '$value'
