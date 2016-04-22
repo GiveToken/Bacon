@@ -1,6 +1,8 @@
 <?php
 namespace Sizzle\Bacon\Tests\Text;
 
+use Sizzle\Bacon\Tests\Traits\Helper;
+
 /**
  * This class tests the CamelToUnderscore trait
  *
