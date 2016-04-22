@@ -181,7 +181,10 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      */
     public function getCities()
     {
-        $sql = "SELECT city_id FROM recruiting_token_city WHERE recruiting_token_id = '$this->id'";
+        $sql = "SELECT city_id
+                FROM recruiting_token_city
+                WHERE recruiting_token_id = '$this->id'
+                AND deleted IS NULL";
         $results = execute_query($sql)->fetch_all(MYSQLI_ASSOC);
         $return = array();
         foreach ($results as $row) {
