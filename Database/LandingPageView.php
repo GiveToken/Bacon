@@ -18,7 +18,7 @@ class LandingPageView extends \Sizzle\Bacon\DatabaseEntity
     {
         if ($id !== null) {
             $id = (int) $id;
-            $page = execute_query(
+            $page = $this->execute_query(
                 "SELECT * FROM landing_page
                  WHERE deleted IS NULL
                  AND id = '$id'"

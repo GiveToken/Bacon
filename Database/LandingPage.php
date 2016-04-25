@@ -22,7 +22,7 @@ class LandingPage extends \Sizzle\Bacon\DatabaseEntity
         } else {
             $condition = "ORDER BY RAND() LIMIT 1";
         }
-        $page = execute_query(
+        $page = $this->execute_query(
             "SELECT * FROM landing_page
             WHERE deleted IS NULL
             $condition"

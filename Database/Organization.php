@@ -24,7 +24,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
                 $key = 'id';
             }
             $value = $this->escape_string($value);
-            $token = execute_query("SELECT *
+            $token = $this->execute_query("SELECT *
               FROM organization
               WHERE $key = '$value'"
             )->fetch_object("Sizzle\Bacon\Database\Organization");
@@ -93,7 +93,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
                     AND user.id = recruiting_token.user_id
                     AND organization.id = '{$this->id}'
                     AND recruiting_token.deleted IS NULL";
-            $result = execute_query($sql);
+            $result = $this->execute_query($sql);
             $jobs = $result->fetch_all(MYSQLI_ASSOC);
         }
         return $jobs;

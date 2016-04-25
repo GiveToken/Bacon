@@ -16,7 +16,7 @@ class CityImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $city_id = (int) $city_id;
         $imageUrls = array();
-        $results = execute_query("SELECT * FROM city_image WHERE city_id='$city_id' ORDER BY id");
+        $results = $this->execute_query("SELECT * FROM city_image WHERE city_id='$city_id' ORDER BY id");
         if ($results) {
             while ($object = $results->fetch_object()) {
                 $imageUrls[count($imageUrls)] = $object;

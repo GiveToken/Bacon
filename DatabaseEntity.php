@@ -23,7 +23,7 @@ implements \JsonSerializable
         if ($id !== null && strlen($id) > 0) {
             $id = $this->escape_string($id);
             $sql = "SELECT * FROM {$this->tableName()} WHERE id = '$id'";
-            $object = execute_query($sql)->fetch_object(get_class($this));
+            $object = $this->execute_query($sql)->fetch_object(get_class($this));
             if (isset($object)) {
                 foreach (get_object_vars($object) as $key => $value) {
                     $this->$key = $value;
@@ -168,10 +168,27 @@ implements \JsonSerializable
      *
      * @return mixed - escaped string or nothing if no connection
      */
-    public function escape_string($string)
+    public function escape_string(string $string)
     {
         if (isset(Connection::$mysqli)) {
             return Connection::$mysqli->real_escape_string($string);
+        }
+    }
+
+    /**
+     * Executes the provided query
+     *
+     * @param string $sql - query string to execute
+     *
+     * @return mixed - escaped string or nothing if no connection
+     */
+    public function execute_query(string $sql)
+    {
+        if ($result = Connection::$mysqli->query($sql)) {
+            return $result;
+        } else {
+            error_log($sql);
+            throw new \Exception(Connection::$mysqli->error);
         }
     }
 }

@@ -41,7 +41,7 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.id = '$recruiting_token_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }
@@ -63,7 +63,7 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.long_id = '$long_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }
@@ -84,7 +84,7 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
         $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
                   FROM recruiting_company_image
                   WHERE recruiting_company_image.recruiting_company_id = '$id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }

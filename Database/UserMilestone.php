@@ -33,7 +33,7 @@ class UserMilestone extends \Sizzle\Bacon\DatabaseEntity
                       FROM user_milestone
                       WHERE user_id = '$user_id'
                       AND milestone_id = '{$Milestone->id}'";
-            $result = execute_query($query);
+            $result = $this->execute_query($query);
             if ($result->num_rows > 0) {
                 $user_milestone = $result->fetch_assoc();
                 $this->id = $user_milestone['id'];
@@ -130,7 +130,7 @@ class UserMilestone extends \Sizzle\Bacon\DatabaseEntity
                   AND ignore_onboard_status = 'N'
                   GROUP BY user.id
                   ORDER BY last_active DESC";
-        $result = execute_query($query);
+        $result = $this->execute_query($query);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

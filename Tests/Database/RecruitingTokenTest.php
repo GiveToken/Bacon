@@ -190,7 +190,7 @@ extends \PHPUnit_Framework_TestCase
         $id = $token->id;
         $token->delete();
         $sql = "SELECT id FROM recruiting_token WHERE id = '$id' AND deleted IS NOT NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertFalse(empty($array));
@@ -209,7 +209,7 @@ extends \PHPUnit_Framework_TestCase
                 FROM recruiting_token_city
                 WHERE recruiting_token_id = '$token->id'
                 AND deleted IS NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertFalse(empty($array));
@@ -233,7 +233,7 @@ extends \PHPUnit_Framework_TestCase
                 FROM recruiting_token_city
                 WHERE recruiting_token_id = '$token->id'
                 AND deleted IS NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertTrue(empty($array));

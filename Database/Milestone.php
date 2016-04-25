@@ -28,7 +28,7 @@ class Milestone extends \Sizzle\Bacon\DatabaseEntity
                       WHERE name = '$milestone'";
         }
 
-        $result = execute_query($query);
+        $result = $this->execute_query($query);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $this->id = $row['id'];

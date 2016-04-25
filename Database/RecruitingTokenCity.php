@@ -17,7 +17,7 @@ class RecruitingTokenCity extends \Sizzle\Bacon\DatabaseEntity
      */
     public function __construct(int $id = null)
     {
-        $page = execute_query(
+        $page = $this->execute_query(
             "SELECT * FROM recruiting_token_city
             WHERE deleted IS NULL
             AND id = '$id'"

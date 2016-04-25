@@ -69,7 +69,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
         default:
             return $user;
         }
-        $result = execute_query(
+        $result = $this->execute_query(
             "SELECT * FROM user
             WHERE $condition"
         );
@@ -88,7 +88,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     {
         if ($token !== null) {
             $token = $this->escape_string($token);
-            execute_query("UPDATE user set access_token = '".$token."' WHERE id = '$this->id'");
+            $this->execute_query("UPDATE user set access_token = '".$token."' WHERE id = '$this->id'");
         }
     }
 
@@ -136,7 +136,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     public function getRecruiterProfile()
     {
         //
-        $profile = execute_query(
+        $profile = $this->execute_query(
             "SELECT user.first_name,
             user.last_name,
             user.position,

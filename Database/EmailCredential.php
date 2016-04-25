@@ -21,7 +21,7 @@ class EmailCredential extends \Sizzle\Bacon\DatabaseEntity
     {
         if ($id !== null) {
             $id = (int) $id;
-            $token = execute_query(
+            $token = $this->execute_query(
                 "SELECT * FROM email_credential
                 WHERE id = '$id'
                 AND deleted IS NULL"
@@ -118,7 +118,7 @@ class EmailCredential extends \Sizzle\Bacon\DatabaseEntity
                   FROM email_credential
                   WHERE deleted IS NULL
                   AND user_id = '$user_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }

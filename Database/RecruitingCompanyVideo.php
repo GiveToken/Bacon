@@ -46,7 +46,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
                   FROM recruiting_company_video, recruiting_token
                   WHERE recruiting_company_video.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.long_id = '$long_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }
@@ -69,7 +69,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
                   recruiting_company_video.source_id
                   FROM recruiting_company_video
                   WHERE recruiting_company_video.recruiting_company_id = '$id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }

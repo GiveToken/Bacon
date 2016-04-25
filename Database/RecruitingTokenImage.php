@@ -38,6 +38,6 @@ class RecruitingTokenImage extends \Sizzle\Bacon\DatabaseEntity
         $recruiting_token_id = (int) $recruiting_token_id;
         $query = "SELECT * FROM recruiting_token_image
                  WHERE recruiting_token_id = '$recruiting_token_id'";
-        return execute_query($query)->fetch_all(MYSQLI_ASSOC);
+        return $this->execute_query($query)->fetch_all(MYSQLI_ASSOC);
     }
 }

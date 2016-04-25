@@ -20,14 +20,14 @@ class EmailList extends \Sizzle\Bacon\DatabaseEntity
         if ($value !== null) {
             if ($key == 'id') {
                 $id = (int) $value;
-                $token = execute_query(
+                $token = $this->execute_query(
                     "SELECT * FROM email_list
                     WHERE id = '$id'
                     AND deleted IS NULL"
                 )->fetch_object("Sizzle\Bacon\Database\EmailList");
             } elseif ($key == 'name') {
                 $value = $this->escape_string($value);
-                $token = execute_query(
+                $token = $this->execute_query(
                     "SELECT * FROM email_list
                     WHERE name = '$value'
                     AND deleted IS NULL"
@@ -110,7 +110,7 @@ class EmailList extends \Sizzle\Bacon\DatabaseEntity
                   FROM email_list
                   WHERE deleted IS NULL
                   AND user_id = '$user_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }

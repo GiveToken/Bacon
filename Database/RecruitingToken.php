@@ -29,7 +29,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
                 $key = 'id';
             }
             $value = $this->escape_string($value);
-            $token = execute_query("SELECT * FROM recruiting_token WHERE $key = '$value'")->fetch_object("Sizzle\Bacon\Database\RecruitingToken");
+            $token = $this->execute_query("SELECT * FROM recruiting_token WHERE $key = '$value'")->fetch_object("Sizzle\Bacon\Database\RecruitingToken");
             if ($token) {
                 foreach (get_object_vars($token) as $key => $value) {
                     if (isset($value)) {
@@ -43,7 +43,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     public static function getUserTokens(int $user_id)
     {
         $user_id = (int) $user_id;
-        $results =  execute_query(
+        $results =  $this->execute_query(
             "SELECT recruiting_token.*, COALESCE(recruiting_company.`name`, 'Unnamed Company') as company
             FROM recruiting_token
             LEFT JOIN recruiting_company ON recruiting_company.id = recruiting_company_id
@@ -61,7 +61,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     public function getUser()
     {
         $user = null;
-        $result = execute_query(
+        $result = $this->execute_query(
             "SELECT * FROM user WHERE id='$this->user_id'"
         );
 
@@ -74,7 +74,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     public function getCompany()
     {
         $company = null;
-        $result = execute_query(
+        $result = $this->execute_query(
             "SELECT * FROM recruiting_company WHERE id='$this->recruiting_company_id'"
         );
 
@@ -95,7 +95,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
         $query = "SELECT id, `name`
                   FROM recruiting_company
                   WHERE user_id = '$user_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         return $results->fetch_all(MYSQLI_ASSOC);
     }
 
@@ -137,7 +137,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
         }
         $long_id = $this->escape_string($long_id);
         $sql = "SELECT id FROM recruiting_token WHERE long_id = '$long_id'";
-        $result = execute_query($sql);
+        $result = $this->execute_query($sql);
         if (0 == $result->num_rows) {
             return true;
         } else {
@@ -185,7 +185,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
                 FROM recruiting_token_city
                 WHERE recruiting_token_id = '$this->id'
                 AND deleted IS NULL";
-        $results = execute_query($sql)->fetch_all(MYSQLI_ASSOC);
+        $results = $this->execute_query($sql)->fetch_all(MYSQLI_ASSOC);
         $return = array();
         foreach ($results as $row) {
           $return[] = new City($row['city_id']);
@@ -222,7 +222,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
                 WHERE recruiting_token_id = '$this->id'
                 AND city_id = '$city_id'
                 AND deleted IS NULL";
-        $result = execute_query($sql);
+        $result = $this->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         if (count($array) == 1) {
             $cityAssociation = new RecruitingTokenCity($array[0]['id']);

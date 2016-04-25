@@ -188,7 +188,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
 
         // call & compare
         $sql = 'SELECT COUNT(*) AS companies FROM recruiting_company';
-        $result = execute_query($sql);
+        $result = (new RecruitingCompany())->execute_query($sql);
         $row = $result->fetch_assoc();
         $companyCount = $row['companies'];
         $all = (new RecruitingCompany())->getAll();

@@ -189,7 +189,7 @@ class CityTest extends \PHPUnit_Framework_TestCase
         $City->temp_avg_winter = rand(0, 127);
         $this->assertTrue($City->save());
         $query = "SELECT * FROM city WHERE `name` = '{$City->name}'";
-        $result = execute_query($query);
+        $result = $City->execute_query($query);
         $this->assertEquals(1, $result->num_rows);
         $row = $result->fetch_assoc();
         $this->assertEquals($City->name, $row['name']);

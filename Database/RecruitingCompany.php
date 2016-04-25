@@ -26,7 +26,7 @@ class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
      */
     public function getAll()
     {
-        return  execute_query("SELECT recruiting_company.id,
+        return  $this->execute_query("SELECT recruiting_company.id,
             CONCAT(recruiting_company.`name`, ' (',  COALESCE(organization.`name`, 'No organization'), ')') AS `name`
             FROM recruiting_company, user
             LEFT JOIN organization ON user.organization_id = organization.id
@@ -44,7 +44,7 @@ class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         if (isset($this->id)) {
-            $result = execute_query("SELECT recruiting_token.id
+            $result = $this->execute_query("SELECT recruiting_token.id
                 FROM recruiting_token
                 WHERE recruiting_token.recruiting_company_id = {$this->id}"
             )->fetch_all(MYSQLI_ASSOC);
