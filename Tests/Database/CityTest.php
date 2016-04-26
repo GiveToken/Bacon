@@ -126,11 +126,11 @@ class CityTest extends \PHPUnit_Framework_TestCase
     public function testGetIdFromName()
     {
         // test success
-        $id = City::getIdFromName($this->existing_city->name);
+        $id = (new City())->getIdFromName($this->existing_city->name);
         $this->assertEquals($this->existing_city->id, $id);
 
         // test fail
-        $this->assertEquals(null, City::getIdFromName('Not the name of a city'));
+        $this->assertEquals(null, (new City())->getIdFromName('Not the name of a city'));
     }
 
     /**

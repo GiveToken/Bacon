@@ -25,7 +25,7 @@ class SupportTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreate()
     {
-        $Support = Support::create("fakeEmail@gosizzle.io", "This is also a fake message");
+        $Support = (new Support())->create("fakeEmail@gosizzle.io", "This is also a fake message");
         $this->assertEquals('Sizzle\Bacon\Database\Support', get_class($Support));
         $this->assertTrue(isset($Support->id));
         $this->assertEquals("fakeEmail@gosizzle.io", $Support->email_address);

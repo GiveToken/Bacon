@@ -40,7 +40,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
         }
     }
 
-    public static function getUserTokens(int $user_id)
+    public function getUserTokens(int $user_id)
     {
         $user_id = (int) $user_id;
         $results =  $this->execute_query(
@@ -89,7 +89,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      *
      * @param int $user_id - the user whose companies are being returned
      */
-    public static function getUserCompanies(int $user_id)
+    public function getUserCompanies(int $user_id)
     {
         $user_id = (int) $user_id;
         $query = "SELECT id, `name`

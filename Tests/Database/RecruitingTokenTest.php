@@ -90,7 +90,7 @@ extends \PHPUnit_Framework_TestCase
         $co2 = $this->createRecruitingCompany($this->User->id);
         $co3 = $this->createRecruitingCompany($this->User->id);
 
-        $companies = RecruitingToken::getUserCompanies($this->User->id);
+        $companies = (new RecruitingToken())->getUserCompanies($this->User->id);
         $this->assertEquals(3, count($companies));
         $this->assertEquals($companies[0]['id'], $co1->id);
         $this->assertEquals($companies[0]['name'], $co1->name);

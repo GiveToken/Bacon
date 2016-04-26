@@ -89,7 +89,7 @@ class UserMilestone extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return array - array of user information
      */
-    public static function stalledCustomers()
+    public function stalledCustomers()
     {
         $query = "SELECT user.id, first_name, last_name, email_address,
                   COALESCE(MAX(web_request.created), 'Never') AS last_active,

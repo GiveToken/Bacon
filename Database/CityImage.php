@@ -12,7 +12,7 @@ class CityImage extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return array(success - did the query succeed, data - image urls) -
      */
-    public static function getAllImageUrlsForCity($city_id)
+    public function getAllImageUrlsForCity($city_id)
     {
         $city_id = (int) $city_id;
         $imageUrls = array();

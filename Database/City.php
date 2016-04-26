@@ -33,7 +33,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return int - the id of the named city
      */
-    public static function getIdFromName(string $name)
+    public function getIdFromName(string $name)
     {
         $sql = "SELECT id FROM city WHERE name = '$name'";
         $result = $this->execute_query($sql);
