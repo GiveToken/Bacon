@@ -201,8 +201,8 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      * @return boolean - success/fail
      */
     public function addCity(int $city_id) {
-        if (0 < (int) $city_id) {
-            $id = (new RecruitingTokenCity())->create($city_id, $this->id);
+        if (0 < (int) $city_id && 0 < (int) $this->id) {
+            $id = (new RecruitingTokenCity())->create($city_id, (int) $this->id);
             return 0 < (int) $id;
         } else {
             return false;
