@@ -120,7 +120,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     public function delete()
     {
         $sql = "UPDATE recruiting_token SET deleted=now() WHERE id = '$this->id'";
-        execute($sql);
+        $this->execute_query($sql);
     }
 
     /**

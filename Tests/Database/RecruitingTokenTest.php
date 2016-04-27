@@ -178,7 +178,7 @@ extends \PHPUnit_Framework_TestCase
 
         // cleanup
         $sql = "DELETE FROM recruiting_token_image WHERE id = '$id'";
-        execute($sql);
+        (new RecruitingToken())->execute_query($sql);
     }
 
     /**

@@ -53,7 +53,7 @@ trait RecruitingToken
     {
         foreach ($this->recruitingTokens as $id) {
             $sql = "DELETE FROM recruiting_token WHERE id = '$id'";
-            execute($sql);
+            (new RecruitingToken())->execute_query($sql);
         }
         $this->deleteRecruitingCompanies();
         $this->deleteUsers();

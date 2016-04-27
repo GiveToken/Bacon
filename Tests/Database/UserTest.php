@@ -196,7 +196,7 @@ extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->users as $id) {
             $sql = "DELETE FROM user_milestone WHERE user_id = '$id'";
-            execute($sql);
+            (new User())->execute_query($sql);
         }
         $this->deleteUsers();
         $this->deleteOrganizations();

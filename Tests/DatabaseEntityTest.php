@@ -28,7 +28,7 @@ class DatabaseEntityTest extends \PHPUnit_Framework_TestCase
             . "PRIMARY KEY (id),"
             . "INDEX id_idx (id ASC)"
             . ")";
-        execute($sql);
+        (new DatabaseEntity())->execute_query($sql);
 
         $sql = "INSERT into ntity (name) VALUES ('test name')";
         $this->existing_entity_id = insert($sql);
@@ -89,6 +89,6 @@ class DatabaseEntityTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $sql = "DROP TABLE ntity";
-        execute($sql);
+        (new DatabaseEntity())->execute_query($sql);
     }
 }

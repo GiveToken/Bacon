@@ -39,6 +39,6 @@ class SupportTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $query = "DELETE FROM support WHERE id = '{$this->id}'";
-        execute($query);
+        (new Support())->execute_query($query);
     }
 }

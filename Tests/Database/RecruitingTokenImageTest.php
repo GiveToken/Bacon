@@ -64,7 +64,7 @@ extends \PHPUnit_Framework_TestCase
 
         // cleanup
         $sql = "DELETE FROM recruiting_token_image WHERE id = '$id'";
-        execute($sql);
+        (new RecruitingTokenImage())->execute_query($sql);
     }
 
     /**
@@ -96,7 +96,7 @@ extends \PHPUnit_Framework_TestCase
         // cleanup
         foreach ($ids as $id) {
             $sql = "DELETE FROM recruiting_token_image WHERE id = '$id'";
-            execute($sql);
+            (new RecruitingTokenImage())->execute_query($sql);
         }
     }
 

@@ -146,7 +146,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
     {
         $table_name = substr(get_class(), strrpos(get_class(), '\\')+1);
         $sql = "DELETE FROM {$this->tableName()} WHERE id = '$this->id'";
-        execute($sql);
+        $this->execute_query($sql);
     }
 
     /**

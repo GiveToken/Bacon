@@ -58,7 +58,7 @@ class EmailListEmail extends \Sizzle\Bacon\DatabaseEntity
         $success = false;
         if (isset($this->id)) {
             $sql = "UPDATE email_list_email SET deleted = NOW() WHERE id = {$this->id}";
-            execute($sql);
+            $this->execute_query($sql);
             $vars = get_class_vars(get_class($this));
             foreach ($vars as $key=>$value) {
                 unset($this->$key);

@@ -56,7 +56,7 @@ class RecruitingTokenCity extends \Sizzle\Bacon\DatabaseEntity
         $success = false;
         if (isset($this->id)) {
             $sql = "UPDATE recruiting_token_city SET deleted = NOW() WHERE id = {$this->id}";
-            execute($sql);
+            $this->execute_query($sql);
             $vars = get_class_vars(get_class($this));
             foreach ($vars as $key=>$value) {
                 if ($key != 'readOnly') {

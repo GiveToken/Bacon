@@ -42,7 +42,7 @@ trait RecruitingCompany
     {
         foreach ($this->recruitingCompanies as $id) {
             $sql = "DELETE FROM recruiting_company WHERE id = '$id'";
-            execute($sql);
+            (new RecruitingCompany())->execute_query($sql);
         }
     }
 }

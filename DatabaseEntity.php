@@ -126,7 +126,7 @@ implements \JsonSerializable
             }
         }
         $sql .= " WHERE id = '$this->id'";
-        execute($sql);
+        $this->execute_query($sql);
     }
 
     /**

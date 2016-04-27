@@ -86,7 +86,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
         $success = false;
         if (isset($this->id)) {
             $sql = "DELETE FROM recruiting_company_video WHERE id = {$this->id}";
-            execute($sql);
+            $this->execute_query($sql);
             $vars = get_class_vars(get_class($this));
             foreach ($vars as $key=>$value) {
                 unset($this->$key);
