@@ -26,7 +26,7 @@ class CityImageTest extends \PHPUnit_Framework_TestCase
     {
         // create a city for testing
         $city = new City();
-        $city->name = "Test City".rand();;
+        $city->name = "Test City ".rand();;
         $city->population = rand(10000, 10000000);
         $city->longitude = rand(0, 100);
         $city->latitude = rand(0, 100);
@@ -55,10 +55,10 @@ class CityImageTest extends \PHPUnit_Framework_TestCase
         $this->city_with_images->save();
         $city_id = $this->city_with_images->id;
         $sql = "INSERT INTO `giftbox`.`city_image` (`city_id`, `image_file`) VALUES ('$city_id', 'AL/Ralph/3.svg');";
-        insert($sql); // image #1
-        insert($sql); // image #2
-        insert($sql); // image #3
-        insert($sql); // image #4
+        $this->city_with_images->execute_query($sql); // image #1
+        $this->city_with_images->execute_query($sql); // image #2
+        $this->city_with_images->execute_query($sql); // image #3
+        $this->city_with_images->execute_query($sql); // image #4
 
         // city with no images
         $this->city_with_no_images = $this->generateCity();

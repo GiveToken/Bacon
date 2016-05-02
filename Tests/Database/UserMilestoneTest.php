@@ -1,8 +1,9 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use \Sizzle\Bacon\Database\{
-    UserMilestone
+use \Sizzle\Bacon\{
+    Connection,
+    Database\UserMilestone
 };
 
 /**
@@ -33,7 +34,8 @@ class UserMilestoneTest extends \PHPUnit_Framework_TestCase
         // setup test milestone
         $this->milestone_name = 'Super '.rand().' Thing';
         $query = "INSERT INTO milestone (`name`) VALUES ('{$this->milestone_name}')";
-        $this->milestone_id = insert($query);
+        $this->User->execute_query($query);
+        $this->milestone_id = Connection::$mysqli->insert_id;
     }
 
     /**

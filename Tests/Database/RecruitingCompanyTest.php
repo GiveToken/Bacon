@@ -1,9 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use Sizzle\Bacon\Database\{
-    RecruitingCompany,
-    User
+use Sizzle\Bacon\{
+    Connection,
+    Database\RecruitingCompany,
+    Database\User
 };
 
 /**
@@ -81,7 +82,8 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
                       '$google_plus',
                       '$pinterest'
                   )";
-        $id = insert($query);
+        $this->User->execute_query($query);
+        $id = Connection::$mysqli->insert_id;
         $result = new RecruitingCompany($id);
         $this->recruitingCompanies[] = $result->id;
         $this->assertTrue(isset($result->name));

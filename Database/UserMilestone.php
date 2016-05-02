@@ -45,15 +45,10 @@ class UserMilestone extends \Sizzle\Bacon\DatabaseEntity
 
                     try {
                         // create the milestone
-                        $query = "INSERT INTO user_milestone (user_id, milestone_id)
-                                  VALUES ('$user_id', '{$Milestone->id}')";
-                        $id = insert($query);
-
-                        // set class properties
-                        $this->id = $id;
                         $this->user_id = $user_id;
                         $this->milestone_id = $Milestone->id;
                         $this->created = date('Y-m-d H:i:s');//close enough
+                        $this->insertRow();
 
                         // send it to Slack
                         $milestoneLogger = new Logger('milestones');

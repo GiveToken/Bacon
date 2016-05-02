@@ -1,8 +1,9 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use \Sizzle\Bacon\Database\{
-    RecruitingCompanyImage
+use \Sizzle\Bacon\{
+    Connection,
+    Database\RecruitingCompanyImage
 };
 
 /**
@@ -60,7 +61,8 @@ extends \PHPUnit_Framework_TestCase
         $file_name = rand().'.jpg';
         $query = "INSERT INTO recruiting_company_image (recruiting_company_id, file_name)
                   VALUES ('{$this->RecruitingCompany->id}', '$file_name')";
-        $id = insert($query);
+        $result->execute_query($query);
+        $id = Connection::$mysqli->insert_id;
         $this->images[] = $id;
         $result = new RecruitingCompanyImage($id);
         $this->assertEquals('Sizzle\Bacon\Database\RecruitingCompanyImage', get_class($result));
@@ -101,7 +103,8 @@ extends \PHPUnit_Framework_TestCase
         $file_name = rand().'.jpg';
         $query = "INSERT INTO recruiting_company_image (recruiting_company_id, file_name)
                   VALUES ('{$this->RecruitingCompany->id}', '$file_name')";
-        $id = insert($query);
+        Connection::$mysqli->query($query);
+        $id = Connection::$mysqli->insert_id;
         $this->images[] = $id;
         $result = new RecruitingCompanyImage($id);
         $this->assertTrue(isset($result->id));
