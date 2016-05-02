@@ -1,6 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Database;
 
+use \Sizzle\Bacon\{
+    Connection
+};
+
 /**
  * This class is for database interaction with organizations.
  */
@@ -51,7 +55,8 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
             if (in_array($var, $settable)) {
                 $val = $this->escape_string($val);
                 $sql = "UPDATE organization SET $var = '$val' WHERE id = '{$this->id}'";
-                if (1 == update($sql)) {
+                $result = $this->execute_query($sql);
+                if (1 == Connection::$mysqli->affected_rows) {
                     $this->$var = $val;
                 }
             }
