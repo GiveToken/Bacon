@@ -22,13 +22,13 @@ class Milestone extends \Sizzle\Bacon\DatabaseEntity
                       FROM milestone
                       WHERE id = '$milestone'";
         } else {
-            $milestone = escape_string($milestone);
+            $milestone = $this->escape_string($milestone);
             $query = "SELECT id, name, created
                       FROM milestone
                       WHERE name = '$milestone'";
         }
 
-        $result = execute_query($query);
+        $result = $this->execute_query($query);
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $this->id = $row['id'];

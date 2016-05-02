@@ -126,11 +126,11 @@ class CityTest extends \PHPUnit_Framework_TestCase
     public function testGetIdFromName()
     {
         // test success
-        $id = City::getIdFromName($this->existing_city->name);
+        $id = (new City())->getIdFromName($this->existing_city->name);
         $this->assertEquals($this->existing_city->id, $id);
 
         // test fail
-        $this->assertEquals(null, City::getIdFromName('Not the name of a city'));
+        $this->assertEquals(null, (new City())->getIdFromName('Not the name of a city'));
     }
 
     /**
@@ -189,7 +189,7 @@ class CityTest extends \PHPUnit_Framework_TestCase
         $City->temp_avg_winter = rand(0, 127);
         $this->assertTrue($City->save());
         $query = "SELECT * FROM city WHERE `name` = '{$City->name}'";
-        $result = execute_query($query);
+        $result = $City->execute_query($query);
         $this->assertEquals(1, $result->num_rows);
         $row = $result->fetch_assoc();
         $this->assertEquals($City->name, $row['name']);

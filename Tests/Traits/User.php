@@ -34,7 +34,7 @@ trait User
     {
         foreach ($this->users as $id) {
             $sql = "DELETE FROM user WHERE id = '$id'";
-            execute($sql);
+            (new User())->execute_query($sql);
         }
     }
 }

@@ -52,7 +52,7 @@ trait City
     {
         foreach ($this->cities as $id) {
             $sql = "DELETE FROM city WHERE id = '$id'";
-            execute($sql);
+            (new City())->execute_query($sql);
         }
     }
 }

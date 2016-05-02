@@ -213,7 +213,7 @@ extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->images as $id) {
             $sql = "DELETE FROM recruiting_company_image WHERE id = '$id'";
-            execute($sql);
+            (new RecruitingCompanyImage())->execute_query($sql);
         }
         $this->deleteRecruitingTokens();
     }

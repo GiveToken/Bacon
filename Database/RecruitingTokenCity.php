@@ -17,7 +17,7 @@ class RecruitingTokenCity extends \Sizzle\Bacon\DatabaseEntity
      */
     public function __construct(int $id = null)
     {
-        $page = execute_query(
+        $page = $this->execute_query(
             "SELECT * FROM recruiting_token_city
             WHERE deleted IS NULL
             AND id = '$id'"
@@ -56,7 +56,7 @@ class RecruitingTokenCity extends \Sizzle\Bacon\DatabaseEntity
         $success = false;
         if (isset($this->id)) {
             $sql = "UPDATE recruiting_token_city SET deleted = NOW() WHERE id = {$this->id}";
-            execute($sql);
+            $this->execute_query($sql);
             $vars = get_class_vars(get_class($this));
             foreach ($vars as $key=>$value) {
                 if ($key != 'readOnly') {

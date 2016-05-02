@@ -39,14 +39,14 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
     public function getByRecruitingTokenLongId(string $long_id)
     {
         $return = array();
-        $long_id = escape_string($long_id);
+        $long_id = $this->escape_string($long_id);
         $query = "SELECT recruiting_company_video.id,
                   recruiting_company_video.source,
                   recruiting_company_video.source_id
                   FROM recruiting_company_video, recruiting_token
                   WHERE recruiting_company_video.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.long_id = '$long_id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }
@@ -69,7 +69,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
                   recruiting_company_video.source_id
                   FROM recruiting_company_video
                   WHERE recruiting_company_video.recruiting_company_id = '$id'";
-        $results = execute_query($query);
+        $results = $this->execute_query($query);
         while ($row = $results->fetch_assoc()) {
             $return[] = $row;
         }
@@ -86,7 +86,7 @@ class RecruitingCompanyVideo extends \Sizzle\Bacon\DatabaseEntity
         $success = false;
         if (isset($this->id)) {
             $sql = "DELETE FROM recruiting_company_video WHERE id = {$this->id}";
-            execute($sql);
+            $this->execute_query($sql);
             $vars = get_class_vars(get_class($this));
             foreach ($vars as $key=>$value) {
                 unset($this->$key);

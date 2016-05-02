@@ -32,7 +32,7 @@ trait Organization
     {
         foreach ($this->organizations as $id) {
             $sql = "DELETE FROM organization WHERE id = '$id'";
-            execute($sql);
+            (new Organization())->execute_query($sql);
         }
     }
 }

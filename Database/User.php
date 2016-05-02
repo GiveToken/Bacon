@@ -34,10 +34,10 @@ class User extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return boolean - does the user exist in the database??
      */
-    public static function exists(string $email_address)
+    public function exists(string $email_address)
     {
         $exists = false;
-        $user = User::fetch($email_address);
+        $user = $this->fetch($email_address);
         if ($user) {
             $exists = true;
         }
@@ -52,10 +52,10 @@ class User extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return User - the corresponding object
      */
-    public static function fetch($value, string $key = 'email_address')
+    public function fetch($value, string $key = 'email_address')
     {
         $user = null;
-        $value = escape_string($value);
+        $value = $this->escape_string($value);
         switch ($key) {
         case 'api_key':
             $condition = "api_key = '$value'";
@@ -69,7 +69,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
         default:
             return $user;
         }
-        $result = execute_query(
+        $result = $this->execute_query(
             "SELECT * FROM user
             WHERE $condition"
         );
@@ -87,8 +87,8 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     public function update_token(string $token = null)
     {
         if ($token !== null) {
-            $token = escape_string($token);
-            execute_query("UPDATE user set access_token = '".$token."' WHERE id = '$this->id'");
+            $token = $this->escape_string($token);
+            $this->execute_query("UPDATE user set access_token = '".$token."' WHERE id = '$this->id'");
         }
     }
 
@@ -112,7 +112,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
      */
     public function activate(string $key)
     {
-        $key = escape_string($key);
+        $key = $this->escape_string($key);
         $rows_affected = update(
             "UPDATE user
             SET activation_key = NULL
@@ -136,7 +136,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     public function getRecruiterProfile()
     {
         //
-        $profile = execute_query(
+        $profile = $this->execute_query(
             "SELECT user.first_name,
             user.last_name,
             user.position,

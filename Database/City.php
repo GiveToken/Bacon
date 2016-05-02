@@ -33,10 +33,10 @@ class City extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return int - the id of the named city
      */
-    public static function getIdFromName(string $name)
+    public function getIdFromName(string $name)
     {
         $sql = "SELECT id FROM city WHERE name = '$name'";
-        $result = execute_query($sql);
+        $result = $this->execute_query($sql);
         $object = is_object($result) ? $result->fetch_object() : null;
         $id = is_object($object) ? $object->id : null;
         return $id;
@@ -77,7 +77,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
                 $sql = "SELECT created
                       FROM {$this->tableName()}
                       WHERE id = $this->id";
-                $this->created = execute_query($sql)->fetch_object()->created;
+                $this->created = $this->execute_query($sql)->fetch_object()->created;
             }
         }
 
@@ -126,8 +126,8 @@ class City extends \Sizzle\Bacon\DatabaseEntity
      */
     public function match10(string $part)
     {
-        $part = escape_string($part);
-        $cities = execute_query(
+        $part = $this->escape_string($part);
+        $cities = $this->execute_query(
             "SELECT * FROM city
              WHERE name LIKE '$part%'
              ORDER BY name"
@@ -146,7 +146,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
     {
         $table_name = substr(get_class(), strrpos(get_class(), '\\')+1);
         $sql = "DELETE FROM {$this->tableName()} WHERE id = '$this->id'";
-        execute($sql);
+        $this->execute_query($sql);
     }
 
     /**
@@ -157,7 +157,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
     public function getCityImages()
     {
         $sql = "SELECT id FROM city_image WHERE city_id = '$this->id'";
-        $results = execute_query($sql)->fetch_all(MYSQLI_ASSOC);
+        $results = $this->execute_query($sql)->fetch_all(MYSQLI_ASSOC);
         $return = array();
         foreach ($results as $row) {
           $return[] = new CityImage($row['id']);

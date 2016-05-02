@@ -50,11 +50,11 @@ extends \PHPUnit_Framework_TestCase
         $email = rand() . '@gossizle.io';
         $sql = "INSERT INTO user (email_address) VALUES ('$email')";
         $userId = insert($sql);
-        $user = User::fetch($email);
+        $user = (new User())->fetch($email);
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
         $this->assertEquals($userId, $user->id);
-        $user = User::fetch(rand() . $email); //this one shouldn't be there
+        $user = (new User())->fetch(rand() . $email); //this one shouldn't be there
         $this->assertFalse(isset($user));
 
         // $key = api_key
@@ -63,12 +63,12 @@ extends \PHPUnit_Framework_TestCase
         $sql = "INSERT INTO user (email_address, api_key)
                 VALUES ('$email', '$apiKey')";
         $userId = insert($sql);
-        $user = User::fetch($apiKey, 'api_key');
+        $user = (new User())->fetch($apiKey, 'api_key');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
         $this->assertEquals($apiKey, $user->api_key);
         $this->assertEquals($userId, $user->id);
-        $user = User::fetch(rand() . $apiKey, 'api_key');
+        $user = (new User())->fetch(rand() . $apiKey, 'api_key');
         //this one shouldn't be there
         $this->assertFalse(isset($user));
 
@@ -76,11 +76,11 @@ extends \PHPUnit_Framework_TestCase
         $email = rand() . '@gossizle.io';
         $sql = "INSERT INTO user (email_address) VALUES ('$email')";
         $userId = insert($sql);
-        $user = User::fetch($email, 'email_address');
+        $user = (new User())->fetch($email, 'email_address');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
         $this->assertEquals($userId, $user->id);
-        $user = User::fetch(rand() . $email, 'email_address');
+        $user = (new User())->fetch(rand() . $email, 'email_address');
         //this one shouldn't be there
         $this->assertFalse(isset($user));
 
@@ -90,17 +90,17 @@ extends \PHPUnit_Framework_TestCase
         $sql = "INSERT INTO user (email_address, reset_code)
                 VALUES ('$email', '$reset')";
         $userId = insert($sql);
-        $user = User::fetch($reset, 'reset_code');
+        $user = (new User())->fetch($reset, 'reset_code');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
         $this->assertEquals($reset, $user->reset_code);
         $this->assertEquals($userId, $user->id);
-        $user = User::fetch(rand() . $reset, 'reset_code');
+        $user = (new User())->fetch(rand() . $reset, 'reset_code');
         //this one shouldn't be there
         $this->assertFalse(isset($user));
 
         // $key garbage
-        $user = User::fetch($email, 'garbage');
+        $user = (new User())->fetch($email, 'garbage');
         $this->assertFalse(isset($user));
     }
 
@@ -196,7 +196,7 @@ extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->users as $id) {
             $sql = "DELETE FROM user_milestone WHERE user_id = '$id'";
-            execute($sql);
+            (new User())->execute_query($sql);
         }
         $this->deleteUsers();
         $this->deleteOrganizations();

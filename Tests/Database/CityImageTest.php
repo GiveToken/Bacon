@@ -67,10 +67,10 @@ class CityImageTest extends \PHPUnit_Framework_TestCase
 
     public function testGetAllImagesForCity()
     {
-        $imagesForCityWithImages = CityImage::getAllImageUrlsForCity($this->city_with_images->id);
+        $imagesForCityWithImages = (new CityImage())->getAllImageUrlsForCity($this->city_with_images->id);
         $this->assertEquals(4, count($imagesForCityWithImages));
 
-        $imagesForCityWithNoImages = CityImage::getAllImageUrlsForCity($this->city_with_no_images->id);
+        $imagesForCityWithNoImages = (new CityImage())->getAllImageUrlsForCity($this->city_with_no_images->id);
         $this->assertEquals(0, count($imagesForCityWithNoImages));
     }
 }

@@ -90,8 +90,7 @@ extends \PHPUnit_Framework_TestCase
         $co2 = $this->createRecruitingCompany($this->User->id);
         $co3 = $this->createRecruitingCompany($this->User->id);
 
-        $companies = RecruitingToken::getUserCompanies($this->User->id);
-        //print_r($companies);
+        $companies = (new RecruitingToken())->getUserCompanies($this->User->id);
         $this->assertEquals(3, count($companies));
         $this->assertEquals($companies[0]['id'], $co1->id);
         $this->assertEquals($companies[0]['name'], $co1->name);
@@ -179,7 +178,7 @@ extends \PHPUnit_Framework_TestCase
 
         // cleanup
         $sql = "DELETE FROM recruiting_token_image WHERE id = '$id'";
-        execute($sql);
+        (new RecruitingToken())->execute_query($sql);
     }
 
     /**
@@ -191,7 +190,7 @@ extends \PHPUnit_Framework_TestCase
         $id = $token->id;
         $token->delete();
         $sql = "SELECT id FROM recruiting_token WHERE id = '$id' AND deleted IS NOT NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertFalse(empty($array));
@@ -210,7 +209,7 @@ extends \PHPUnit_Framework_TestCase
                 FROM recruiting_token_city
                 WHERE recruiting_token_id = '$token->id'
                 AND deleted IS NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertFalse(empty($array));
@@ -234,7 +233,7 @@ extends \PHPUnit_Framework_TestCase
                 FROM recruiting_token_city
                 WHERE recruiting_token_id = '$token->id'
                 AND deleted IS NULL";
-        $result = execute_query($sql);
+        $result = $token->execute_query($sql);
         $array = $result->fetch_all(MYSQLI_ASSOC);
         $this->assertTrue(is_array($array));
         $this->assertTrue(empty($array));

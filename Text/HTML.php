@@ -53,7 +53,6 @@ class HTML
                     $sections[] = self::bulletListTo($bulletSection);
                     $tempText = $nextText."\n".implode("\n", $pieces);
                 }
-                //print_r($sections);
                 $text = implode("\n", $sections)."\n".$tempText;
             }
 

@@ -21,9 +21,9 @@ implements \JsonSerializable
     public function __construct($id = null)
     {
         if ($id !== null && strlen($id) > 0) {
-            $id = escape_string($id);
+            $id = $this->escape_string($id);
             $sql = "SELECT * FROM {$this->tableName()} WHERE id = '$id'";
-            $object = execute_query($sql)->fetch_object(get_class($this));
+            $object = $this->execute_query($sql)->fetch_object(get_class($this));
             if (isset($object)) {
                 foreach (get_object_vars($object) as $key => $value) {
                     $this->$key = $value;
@@ -99,7 +99,7 @@ implements \JsonSerializable
         foreach (get_object_vars($this) as $key => $value) {
             if ($key !== 'readOnly' && !in_array($key, $this->readOnly) && isset($value)) {
                 $columns .= $comma.'`'.$key.'`';
-                $values .= $comma."'".escape_string($value)."'";
+                $values .= $comma."'".$this->escape_string($value)."'";
                 $comma = ', ';
             }
         }
@@ -118,7 +118,7 @@ implements \JsonSerializable
             if ($key !== 'readOnly' && !in_array($key, $this->readOnly)) {
                 $sql .= $comma.'`'.$key.'`'." = ";
                 if (strlen($value) > 0) {
-                    $sql .= "'".escape_string($value)."'";
+                    $sql .= "'".$this->escape_string($value)."'";
                 } else {
                     $sql .= 'NULL';
                 }
@@ -126,7 +126,7 @@ implements \JsonSerializable
             }
         }
         $sql .= " WHERE id = '$this->id'";
-        execute($sql);
+        $this->execute_query($sql);
     }
 
     /**
@@ -158,6 +158,37 @@ implements \JsonSerializable
             if ('readOnly' != $key) {
                 unset($this->$key);
             }
+        }
+    }
+
+    /**
+     * Escapes the provided string
+     *
+     * @param string $string - string to escape
+     *
+     * @return mixed - escaped string or nothing if no connection
+     */
+    public function escape_string(string $string)
+    {
+        if (isset(Connection::$mysqli)) {
+            return Connection::$mysqli->real_escape_string($string);
+        }
+    }
+
+    /**
+     * Executes the provided query
+     *
+     * @param string $sql - query string to execute
+     *
+     * @return mixed - escaped string or nothing if no connection
+     */
+    public function execute_query(string $sql)
+    {
+        if ($result = Connection::$mysqli->query($sql)) {
+            return $result;
+        } else {
+            error_log($sql);
+            throw new \Exception(Connection::$mysqli->error);
         }
     }
 }

@@ -197,7 +197,7 @@ extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->vids as $id) {
             $sql = "DELETE FROM recruiting_company_video WHERE id = '$id'";
-            execute($sql);
+            (new RecruitingCompanyVideo())->execute_query($sql);
         }
         $this->deleteRecruitingTokens();
     }

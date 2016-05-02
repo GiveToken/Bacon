@@ -23,8 +23,8 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
             if ($key == null || !in_array($key, array('id','long_id'))) {
                 $key = 'id';
             }
-            $value = escape_string($value);
-            $token = execute_query("SELECT *
+            $value = $this->escape_string($value);
+            $token = $this->execute_query("SELECT *
               FROM organization
               WHERE $key = '$value'"
             )->fetch_object("Sizzle\Bacon\Database\Organization");
@@ -49,7 +49,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
         if (isset($this->id)) {
             $settable = ['name', 'website', 'paying_user'];
             if (in_array($var, $settable)) {
-                $val = escape_string($val);
+                $val = $this->escape_string($val);
                 $sql = "UPDATE organization SET $var = '$val' WHERE id = '{$this->id}'";
                 if (1 == update($sql)) {
                     $this->$var = $val;
@@ -93,7 +93,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
                     AND user.id = recruiting_token.user_id
                     AND organization.id = '{$this->id}'
                     AND recruiting_token.deleted IS NULL";
-            $result = execute_query($sql);
+            $result = $this->execute_query($sql);
             $jobs = $result->fetch_all(MYSQLI_ASSOC);
         }
         return $jobs;

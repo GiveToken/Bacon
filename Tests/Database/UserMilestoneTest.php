@@ -64,9 +64,9 @@ class UserMilestoneTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         $query = "DELETE FROM user_milestone WHERE milestone_id = '{$this->milestone_id}'";
-        execute($query);
+        (new UserMilestone())->execute_query($query);
         $query = "DELETE FROM milestone WHERE id = '{$this->milestone_id}'";
-        execute($query);
+        (new UserMilestone())->execute_query($query);
         $this->deleteUsers();
     }
 }
