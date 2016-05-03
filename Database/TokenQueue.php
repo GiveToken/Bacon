@@ -40,7 +40,7 @@ class TokenQueue extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         if (0 < (int) $count) {
-            $sql = "SELECT `email_address`, `subject`, `body`, `source`
+            $sql = "SELECT `email_address`, `subject`, `body`, `source`, `created`, `id`
                     FROM token_queue
                     WHERE worked IS NULL
                     ORDER BY created ASC
