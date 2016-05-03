@@ -7,3 +7,7 @@ Setup:
 4) Branch  
 5) Code  
 6) Submit Pull Request  
+
+## Deployment
+
+The repository is automagically deployed to development at [dev.gosizzle.io](http://dev.gosizzle.io).
