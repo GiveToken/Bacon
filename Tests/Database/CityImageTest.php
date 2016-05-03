@@ -14,14 +14,6 @@ class CityImageTest extends \PHPUnit_Framework_TestCase
     protected $city_with_images;
     protected $city_with_no_images;
 
-    /**
-   * Requires the util.php file of functions
-   */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
     private function generateCity()
     {
         // create a city for testing

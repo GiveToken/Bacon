@@ -13,14 +13,6 @@ class SupportTest extends \PHPUnit_Framework_TestCase
     protected $id;
 
     /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
-    /**
      * Tests the __construct function.
      */
     public function testCreate()

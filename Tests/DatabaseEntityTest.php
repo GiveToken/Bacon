@@ -15,13 +15,6 @@ class DatabaseEntityTest extends \PHPUnit_Framework_TestCase
 {
     private $existing_entity_id;
     private $inserted_entity;
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../util.php';
-    }
 
     protected function setUp()
     {

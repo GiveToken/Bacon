@@ -17,14 +17,6 @@ extends \PHPUnit_Framework_TestCase
     use \Sizzle\Bacon\Tests\Traits\User;
 
     /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
-    /**
      * Creates test user
      */
     public function setUp()

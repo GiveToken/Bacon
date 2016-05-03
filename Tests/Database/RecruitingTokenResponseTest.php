@@ -16,14 +16,6 @@ extends \PHPUnit_Framework_TestCase
     use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
 
     /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
-    /**
      * Creates testing items in the database
      */
     public function setUp()

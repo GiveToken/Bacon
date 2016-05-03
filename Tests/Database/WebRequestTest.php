@@ -14,14 +14,6 @@ class WebRequestTest
 extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
-    /**
      * Tests the newVisitor function.
      */
     public function testNewVisitor()

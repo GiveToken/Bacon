@@ -18,14 +18,6 @@ extends \PHPUnit_Framework_TestCase
     use \Sizzle\Bacon\Tests\Traits\Organization;
 
     /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
-    /**
      * Tests the __construct method.
      */
     public function testConstructor()
