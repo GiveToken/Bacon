@@ -14,14 +14,6 @@ class CityTest extends \PHPUnit_Framework_TestCase
 
     protected $existing_city;
 
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
-
     protected function setUp()
     {
         // create a city for testing
@@ -49,7 +41,7 @@ class CityTest extends \PHPUnit_Framework_TestCase
     {
         // test saving a new city
         $city = new City();
-        $city->name = "City #" . rand(0, 100);
+        $city->name = "City #" . rand();
         $city->population = rand(10000, 10000000);
         $city->longitude = rand(0, 100);
         $city->latitude = rand(0, 100);

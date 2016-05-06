@@ -1,8 +1,9 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use \Sizzle\Bacon\Database\{
-    RecruitingCompanyVideo
+use \Sizzle\Bacon\{
+    Connection,
+    Database\RecruitingCompanyVideo
 };
 
 /**
@@ -14,14 +15,6 @@ class RecruitingCompanyVideoTest
 extends \PHPUnit_Framework_TestCase
 {
     use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
-
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
 
     /**
      * Creates testing items in the database
@@ -60,7 +53,8 @@ extends \PHPUnit_Framework_TestCase
         $source_id = rand();
         $query = "INSERT INTO recruiting_company_video (recruiting_company_id, source_id)
                   VALUES ('{$this->RecruitingCompany->id}', '$source_id')";
-        $id = insert($query);
+        $result->execute_query($query);
+        $id = Connection::$mysqli->insert_id;
         $this->vids[] = $id;
         $result = new RecruitingCompanyVideo($id);
         $this->assertEquals('Sizzle\Bacon\Database\RecruitingCompanyVideo', get_class($result));
@@ -171,7 +165,8 @@ extends \PHPUnit_Framework_TestCase
         // create token video
         $query = "INSERT INTO recruiting_company_video (recruiting_company_id)
                   VALUES ('{$this->RecruitingCompany->id}')";
-        $id = insert($query);
+        Connection::$mysqli->query($query);
+        $id = Connection::$mysqli->insert_id;
         $this->vids[] = $id;
         $result = new RecruitingCompanyVideo($id);
 

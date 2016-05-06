@@ -1,7 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Tests;
 
-use Sizzle\Bacon\DatabaseEntity;
+use Sizzle\Bacon\{
+    Connection,
+    DatabaseEntity
+};
 
 /**
  * This class tests the DatabaseEntity class
@@ -12,13 +15,6 @@ class DatabaseEntityTest extends \PHPUnit_Framework_TestCase
 {
     private $existing_entity_id;
     private $inserted_entity;
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../util.php';
-    }
 
     protected function setUp()
     {
@@ -31,7 +27,8 @@ class DatabaseEntityTest extends \PHPUnit_Framework_TestCase
         (new DatabaseEntity())->execute_query($sql);
 
         $sql = "INSERT into ntity (name) VALUES ('test name')";
-        $this->existing_entity_id = insert($sql);
+        Connection::$mysqli->query($sql);
+        $this->existing_entity_id = Connection::$mysqli->insert_id;
     }
 
     /**

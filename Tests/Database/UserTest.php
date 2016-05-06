@@ -1,7 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use \Sizzle\Bacon\Database\User;
+use \Sizzle\Bacon\{
+    Connection,
+    Database\User
+};
 
 /**
  * This class tests the User class
@@ -13,14 +16,6 @@ extends \PHPUnit_Framework_TestCase
 {
     use \Sizzle\Bacon\Tests\Traits\User;
     use \Sizzle\Bacon\Tests\Traits\Organization;
-
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
 
     /**
      * Tests the __construct method.
@@ -49,7 +44,8 @@ extends \PHPUnit_Framework_TestCase
         // $key default
         $email = rand() . '@gossizle.io';
         $sql = "INSERT INTO user (email_address) VALUES ('$email')";
-        $userId = insert($sql);
+        Connection::$mysqli->query($sql);
+        $userId = Connection::$mysqli->insert_id;
         $user = (new User())->fetch($email);
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
@@ -62,7 +58,8 @@ extends \PHPUnit_Framework_TestCase
         $apiKey = rand() . '_key';
         $sql = "INSERT INTO user (email_address, api_key)
                 VALUES ('$email', '$apiKey')";
-        $userId = insert($sql);
+        Connection::$mysqli->query($sql);
+        $userId = Connection::$mysqli->insert_id;
         $user = (new User())->fetch($apiKey, 'api_key');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
@@ -75,7 +72,8 @@ extends \PHPUnit_Framework_TestCase
         // $key = email_address
         $email = rand() . '@gossizle.io';
         $sql = "INSERT INTO user (email_address) VALUES ('$email')";
-        $userId = insert($sql);
+        Connection::$mysqli->query($sql);
+        $userId = Connection::$mysqli->insert_id;
         $user = (new User())->fetch($email, 'email_address');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);
@@ -89,7 +87,8 @@ extends \PHPUnit_Framework_TestCase
         $reset = rand() . '_code';
         $sql = "INSERT INTO user (email_address, reset_code)
                 VALUES ('$email', '$reset')";
-        $userId = insert($sql);
+        Connection::$mysqli->query($sql);
+        $userId = Connection::$mysqli->insert_id;
         $user = (new User())->fetch($reset, 'reset_code');
         $this->assertEquals('Sizzle\Bacon\Database\User', get_class($user));
         $this->assertEquals($email, $user->email_address);

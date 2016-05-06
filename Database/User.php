@@ -1,6 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Database;
 
+use \Sizzle\Bacon\{
+    Connection
+};
+
 /**
  * This class is for interacting with the user table.
  */
@@ -113,14 +117,14 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     public function activate(string $key)
     {
         $key = $this->escape_string($key);
-        $rows_affected = update(
+        $rows_affected = $this->execute_query(
             "UPDATE user
             SET activation_key = NULL
             WHERE id = '{$this->id}'
             AND activation_key = '$key'
             LIMIT 1"
         );
-        if ($rows_affected != 1) {
+        if (Connection::$mysqli->affected_rows != 1) {
             return false;
         } else {
             $UserMilestone = new UserMilestone($this->id, 'Confirm Email');

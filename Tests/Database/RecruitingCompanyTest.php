@@ -1,9 +1,10 @@
 <?php
 namespace Sizzle\Bacon\Tests\Database;
 
-use Sizzle\Bacon\Database\{
-    RecruitingCompany,
-    User
+use Sizzle\Bacon\{
+    Connection,
+    Database\RecruitingCompany,
+    Database\User
 };
 
 /**
@@ -15,14 +16,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
 {
     use \Sizzle\Bacon\Tests\Traits\Organization;
     use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
-
-    /**
-     * Requires the util.php file of functions
-     */
-    public static function setUpBeforeClass()
-    {
-        include_once __DIR__.'/../../../../util.php';
-    }
 
     /**
      * Creates test user
@@ -81,7 +74,8 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
                       '$google_plus',
                       '$pinterest'
                   )";
-        $id = insert($query);
+        $this->User->execute_query($query);
+        $id = Connection::$mysqli->insert_id;
         $result = new RecruitingCompany($id);
         $this->recruitingCompanies[] = $result->id;
         $this->assertTrue(isset($result->name));

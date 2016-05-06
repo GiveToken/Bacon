@@ -104,7 +104,8 @@ implements \JsonSerializable
             }
         }
         $sql = "INSERT INTO {$this->tableName()} ($columns) VALUES ($values)";
-        $this->id = insert($sql);
+        $this->execute_query($sql);
+        $this->id = Connection::$mysqli->insert_id;
     }
 
     /**
