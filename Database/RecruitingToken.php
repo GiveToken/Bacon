@@ -15,6 +15,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     protected $perks;
     protected $recruiting_company_id;
     protected $recruiter_profile;
+    protected $apply_link;
 
     /**
      * This function constructs the class
