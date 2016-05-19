@@ -13,7 +13,8 @@ class WebRequest extends \Sizzle\Bacon\DatabaseEntity
     protected $uri;
     protected $remote_ip;
     protected $script;
-
+    protected $experiment_id;
+    protected $experiment_version;
 
     /**
      * Is this a new visitor?
@@ -33,5 +34,28 @@ class WebRequest extends \Sizzle\Bacon\DatabaseEntity
         } else {
             return true;
         }
+    }
+
+    /**
+     * Mark the web request as being part of an experiment
+     *
+     * @param int $id - the experiment_id of the experiement
+     * @param string $version - the visitor cookie from the user's browser
+     *
+     * @return boolean - success marking it
+     */
+    public function inExperiment(int $id, string $version)
+    {
+        $return = false;
+        if (isset($this->id)) {
+            $experiment = new Experiment($id);
+            if (isset($experiment->id)) {
+                $this->experiment_id = $id;
+                $this->experiment_version = $version;
+                $this->save();
+                $return = true;
+            }
+        }
+        return $return;
     }
 }
