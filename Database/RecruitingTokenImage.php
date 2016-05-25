@@ -10,6 +10,25 @@ class RecruitingTokenImage extends \Sizzle\Bacon\DatabaseEntity
     protected $recruiting_token_id;
 
     /**
+     * Constructs the class
+     *
+     * @param int $id - the id of the record to pull from the database
+     */
+    public function __construct($id = null)
+    {
+        if ($id !== null && strlen($id) > 0) {
+            $id = $this->escape_string($id);
+            $sql = "SELECT * FROM {$this->tableName()} WHERE id = '$id' AND deleted IS NULL";
+            $object = $this->execute_query($sql)->fetch_object(get_class($this));
+            if (isset($object)) {
+                foreach (get_object_vars($object) as $key => $value) {
+                    $this->$key = $value;
+                }
+            }
+        }
+    }
+
+    /**
      * This function creates an entry in the recruiting_token_image table
      *
      * @param string $file_name           - name of image file
@@ -37,7 +56,30 @@ class RecruitingTokenImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $recruiting_token_id = (int) $recruiting_token_id;
         $query = "SELECT * FROM recruiting_token_image
-                 WHERE recruiting_token_id = '$recruiting_token_id'";
+                 WHERE recruiting_token_id = '$recruiting_token_id'
+                 AND deleted IS NULL";
         return $this->execute_query($query)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    /**
+     * "Deletes" an entry in the recruiting_token_image table
+     *
+     * @return boolean  - success/fail
+     */
+    public function delete()
+    {
+        $success = false;
+        if (isset($this->id)) {
+            $sql = "UPDATE recruiting_token_image SET deleted = NOW() WHERE id = {$this->id}";
+            $this->execute_query($sql);
+            $vars = get_class_vars(get_class($this));
+            foreach ($vars as $key=>$value) {
+                if ($key != 'readOnly') {
+                    unset($this->$key);
+                }
+            }
+            $success = true;
+        }
+        return $success;
     }
 }

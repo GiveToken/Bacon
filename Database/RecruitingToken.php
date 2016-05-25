@@ -232,4 +232,24 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
             return false;
         }
     }
+
+    /**
+     * Removes token images. Retains the actual images & marks the database as
+     * "deleted" to retain a record.
+     *
+     * @return boolean - success/fail
+     */
+    public function removeImages() {
+        $sql = "SELECT id
+                FROM recruiting_token_image
+                WHERE recruiting_token_id = '$this->id'
+                AND deleted IS NULL";
+        $result = $this->execute_query($sql);
+        $array = $result->fetch_all(MYSQLI_ASSOC);
+        $success = true;
+        foreach ($array as $image) {
+            $success = $success && (new RecruitingTokenImage($image['id']))->delete();
+        }
+        return $success;
+    }
 }
