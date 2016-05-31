@@ -27,7 +27,7 @@ class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
     public function getAll()
     {
         return  $this->execute_query("SELECT recruiting_company.id,
-            CONCAT(recruiting_company.`name`, ' (',  COALESCE(organization.`name`, 'No organization'), ')') AS `name`
+            CONCAT(COALESCE(recruiting_company.`name`,''), ' (',  COALESCE(organization.`name`, 'No organization'), ')') AS `name`
             FROM recruiting_company, user
             LEFT JOIN organization ON user.organization_id = organization.id
             WHERE recruiting_company.user_id = user.id
