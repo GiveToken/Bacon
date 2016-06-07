@@ -47,12 +47,13 @@ class WebRequest extends \Sizzle\Bacon\DatabaseEntity
     public function inExperiment(int $id, string $version)
     {
         $return = false;
+        // ensure this is a valid web request
         if (isset($this->id)) {
+            // ensure provided experiment id is valid
             $experiment = new Experiment($id);
             if (isset($experiment->id)) {
-                $this->experiment_id = $id;
-                $this->experiment_version = $version;
-                $this->save();
+                // create relationship
+                (new ExperimentWebRequest())->create($id, $version, $this->id);
                 $return = true;
             }
         }
