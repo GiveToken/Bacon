@@ -8,6 +8,7 @@ class RecruitingTokenResponse extends \Sizzle\Bacon\DatabaseEntity
 {
     protected $recruiting_token_id;
     protected $email;
+    protected $name;
     protected $visitor_cookie;
 
     /**
@@ -16,11 +17,12 @@ class RecruitingTokenResponse extends \Sizzle\Bacon\DatabaseEntity
      * @param string $recruiting_token_id - long id of the token
      * @param string $email               - email address of respondent
      * @param string $response            - Yes, No or Maybe
+     * @param string $name                - (optional) name of responder
      * @param string $cookie              - unique cookie for this visitor
      *
      * @return int $id - id of inserted row or 0 on fail
      */
-    public function create(string $recruiting_token_id, string $email, string $response, string $cookie = '')
+    public function create(string $recruiting_token_id, string $email, string $response, string $name, string $cookie = '')
     {
         $this->unsetAll();
 
@@ -37,6 +39,7 @@ class RecruitingTokenResponse extends \Sizzle\Bacon\DatabaseEntity
                 $this->recruiting_token_id = $row['id'];
                 $this->email = $email;
                 $this->response = $response;
+                $this->name = $name;
                 $this->visitor_cookie = $cookie;
                 $this->save();
             }
