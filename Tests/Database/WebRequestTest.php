@@ -3,6 +3,7 @@ namespace Sizzle\Bacon\Tests\Database;
 
 use \Sizzle\Bacon\Database\{
     Experiment,
+    ExperimentWebRequest,
     WebRequest
 };
 
@@ -57,8 +58,5 @@ extends \PHPUnit_Framework_TestCase
         $experiment->save();
         $version = rand();
         $this->assertTrue((new WebRequest($webRequest->id))->inExperiment($experiment->id, $version));
-        $webRequest2 = new WebRequest($webRequest->id);
-        $this->assertEquals($webRequest2->experiment_id, $experiment->id);
-        $this->assertEquals($webRequest2->experiment_version, $version);
     }
 }
