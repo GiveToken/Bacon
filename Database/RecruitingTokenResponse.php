@@ -22,7 +22,7 @@ class RecruitingTokenResponse extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return int $id - id of inserted row or 0 on fail
      */
-    public function create(string $recruiting_token_id, string $email, string $response, string $name, string $cookie = '')
+    public function create(string $recruiting_token_id, string $email, string $response, string $name = '', string $cookie = '')
     {
         $this->unsetAll();
 
