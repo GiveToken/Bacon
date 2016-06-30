@@ -8,7 +8,7 @@ use \Sizzle\Bacon\Database\{
 /**
  * This class tests the Experiment class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/ExperimentTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/ExperimentTest
  */
 class ExperimentTest
 extends \PHPUnit_Framework_TestCase

@@ -8,7 +8,7 @@ use \Sizzle\Bacon\Service\MandrillEmail;
  *
    Make sure you have set TEST_EMAIL in src/Tests/local.php
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/MandrillEmailTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/MandrillEmailTest
  */
 class MandrillEmailTest
 extends \PHPUnit_Framework_TestCase

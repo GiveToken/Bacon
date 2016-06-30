@@ -9,7 +9,7 @@ use Sizzle\Bacon\{
 /**
  * This class tests the TokenQueue class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/TokenQueueTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/TokenQueueTest
  */
 class TokenQueueTest extends \PHPUnit_Framework_TestCase
 {

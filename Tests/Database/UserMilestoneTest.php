@@ -9,7 +9,7 @@ use \Sizzle\Bacon\{
 /**
  * This class tests the UserMilestone & Milestone classes
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/UserMilestoneTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/UserMilestoneTest
  */
 class UserMilestoneTest extends \PHPUnit_Framework_TestCase
 {

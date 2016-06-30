@@ -6,7 +6,7 @@ use \Sizzle\Bacon\Connection;
 /**
  * This class tests the Connection class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/ConnectionTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/ConnectionTest
  */
 class ConnectionTest
 extends \PHPUnit_Framework_TestCase

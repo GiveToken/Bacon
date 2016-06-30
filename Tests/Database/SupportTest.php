@@ -6,7 +6,7 @@ use \Sizzle\Bacon\Database\Support;
 /**
  * This class tests the Support class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/SupportTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/SupportTest
  */
 class SupportTest extends \PHPUnit_Framework_TestCase
 {

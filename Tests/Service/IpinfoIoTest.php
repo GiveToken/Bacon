@@ -6,7 +6,7 @@ use \Sizzle\Bacon\Service\IpinfoIo;
 /**
  * This class tests the IpinfoIoTest class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/IpinfoIoTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/IpinfoIoTest
  */
 class IpinfoIoTest
 extends \PHPUnit_Framework_TestCase

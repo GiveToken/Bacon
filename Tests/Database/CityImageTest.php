@@ -7,7 +7,7 @@ use Sizzle\Bacon\Database\CityImage;
 /**
  * This class tests the City class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/CityImageTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/CityImageTest
  */
 class CityImageTest extends \PHPUnit_Framework_TestCase
 {
