@@ -28,9 +28,10 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
                 $key = 'id';
             }
             $value = $this->escape_string($value);
-            $token = $this->execute_query("SELECT *
-              FROM organization
-              WHERE $key = '$value'"
+            $token = $this->execute_query(
+                "SELECT *
+                FROM organization
+                WHERE $key = '$value'"
             )->fetch_object("Sizzle\Bacon\Database\Organization");
             if ($token) {
                 foreach (get_object_vars($token) as $key => $value) {
@@ -89,7 +90,7 @@ class Organization extends \Sizzle\Bacon\DatabaseEntity
     public function getJobs()
     {
         $jobs = array();
-        if (isset($this->id)){
+        if (isset($this->id)) {
             $sql = "SELECT recruiting_token.job_title AS `title`,
                     recruiting_token.job_description AS `description`,
                     recruiting_token.long_id

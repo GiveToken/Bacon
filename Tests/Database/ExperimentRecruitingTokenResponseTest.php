@@ -31,6 +31,6 @@ extends \PHPUnit_Framework_TestCase
     public function testCreateFail()
     {
         // fail
-        (new ExperimentRecruitingTokenResponse())->create(-1,'fail',-1);
+        (new ExperimentRecruitingTokenResponse())->create(-1, 'fail', -1);
     }
 }

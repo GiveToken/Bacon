@@ -21,7 +21,8 @@ class ExperimentNote extends \Sizzle\Bacon\DatabaseEntity
      */
     public function getAll(int $experiment_id)
     {
-        return  $this->execute_query("SELECT experiment_note.`id`,
+        return  $this->execute_query(
+            "SELECT experiment_note.`id`,
             experiment_note.`note`,
             experiment_note.`created`,
             experiment_note.`user_id`,
