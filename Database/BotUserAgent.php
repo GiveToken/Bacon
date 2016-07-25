@@ -18,11 +18,12 @@ class BotUserAgent extends \Sizzle\Bacon\DatabaseEntity
      */
     public function getAllHits()
     {
-        return  $this->execute_query("SELECT bot_user_agent.user_agent, count(*) hits
-                                      FROM bot_user_agent, web_request
-                                      WHERE web_request.user_agent = bot_user_agent.user_agent
-                                      GROUP BY bot_user_agent.user_agent
-                                      ORDER BY hits DESC;"
+        return  $this->execute_query(
+            "SELECT bot_user_agent.user_agent, count(*) hits
+            FROM bot_user_agent, web_request
+            WHERE web_request.user_agent = bot_user_agent.user_agent
+            GROUP BY bot_user_agent.user_agent
+            ORDER BY hits DESC;"
         )->fetch_all(MYSQLI_ASSOC);
     }
 }

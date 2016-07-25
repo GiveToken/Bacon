@@ -19,7 +19,8 @@ class Experiment extends \Sizzle\Bacon\DatabaseEntity
      */
     public function getAll()
     {
-        return  $this->execute_query("SELECT `id`, `title`, `completed`, `created`
+        return  $this->execute_query(
+            "SELECT `id`, `title`, `completed`, `created`
             FROM experiment
             ORDER BY `id`"
         )->fetch_all(MYSQLI_ASSOC);

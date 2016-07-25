@@ -8,7 +8,7 @@ use \Sizzle\Bacon\Database\{
 /**
  * This class tests the RecruitingTokenResponse class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingTokenResponseTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingTokenResponseTest
  */
 class RecruitingTokenResponseTest
 extends \PHPUnit_Framework_TestCase

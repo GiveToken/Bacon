@@ -8,7 +8,7 @@ use \Sizzle\Bacon\Database\{
 /**
  * This class tests the EmailCredential class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/EmailCredentialTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/EmailCredentialTest
  */
 class EmailCredentialTest
 extends \PHPUnit_Framework_TestCase

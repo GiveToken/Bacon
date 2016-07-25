@@ -14,9 +14,9 @@ class ExperimentWebRequest extends \Sizzle\Bacon\DatabaseEntity
     /**
      * This function creates an entry in the experiment_web_request table
      *
-     * @param int $experiment_id          - experiment id
-     * @param string $experiment_version  - experiment version
-     * @param int $web_request_id         - web_request id
+     * @param int    $experiment_id      - experiment id
+     * @param string $experiment_version - experiment version
+     * @param int    $web_request_id     - web_request id
      *
      * @return int $id - id of inserted row or 0 on fail
      */

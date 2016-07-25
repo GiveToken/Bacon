@@ -9,7 +9,7 @@ use \Sizzle\Bacon\Database\{
 /**
  * This class tests the EmailSent class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/EmailSentTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/EmailSentTest
  */
 class EmailSentTest
 extends \PHPUnit_Framework_TestCase

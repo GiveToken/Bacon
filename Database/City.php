@@ -94,23 +94,23 @@ class City extends \Sizzle\Bacon\DatabaseEntity
     {
         $update = isset($this->name);
         $update = $update && isset($this->population);
-        $update = $update && isset( $this->longitude);
-        $update = $update && isset( $this->latitude);
-        $update = $update && isset( $this->county);
-        $update = $update && isset( $this->country);
-        $update = $update && isset( $this->timezone);
-        $update = $update && isset( $this->temp_hi_spring);
-        $update = $update && isset( $this->temp_lo_spring);
-        $update = $update && isset( $this->temp_avg_spring);
-        $update = $update && isset( $this->temp_hi_summer);
-        $update = $update && isset( $this->temp_lo_summer);
-        $update = $update && isset( $this->temp_avg_summer);
-        $update = $update && isset( $this->temp_hi_fall);
-        $update = $update && isset( $this->temp_lo_fall);
-        $update = $update && isset( $this->temp_avg_fall);
-        $update = $update && isset( $this->temp_hi_winter);
-        $update = $update && isset( $this->temp_lo_winter);
-        $update = $update && isset( $this->temp_avg_winter);
+        $update = $update && isset($this->longitude);
+        $update = $update && isset($this->latitude);
+        $update = $update && isset($this->county);
+        $update = $update && isset($this->country);
+        $update = $update && isset($this->timezone);
+        $update = $update && isset($this->temp_hi_spring);
+        $update = $update && isset($this->temp_lo_spring);
+        $update = $update && isset($this->temp_avg_spring);
+        $update = $update && isset($this->temp_hi_summer);
+        $update = $update && isset($this->temp_lo_summer);
+        $update = $update && isset($this->temp_avg_summer);
+        $update = $update && isset($this->temp_hi_fall);
+        $update = $update && isset($this->temp_lo_fall);
+        $update = $update && isset($this->temp_avg_fall);
+        $update = $update && isset($this->temp_hi_winter);
+        $update = $update && isset($this->temp_lo_winter);
+        $update = $update && isset($this->temp_avg_winter);
         if ($update) {
             parent::updateRow();
         }
@@ -160,7 +160,7 @@ class City extends \Sizzle\Bacon\DatabaseEntity
         $results = $this->execute_query($sql)->fetch_all(MYSQLI_ASSOC);
         $return = array();
         foreach ($results as $row) {
-          $return[] = new CityImage($row['id']);
+            $return[] = new CityImage($row['id']);
         }
         return $return;
     }

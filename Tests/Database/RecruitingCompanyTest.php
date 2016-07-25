@@ -10,7 +10,7 @@ use Sizzle\Bacon\{
 /**
  * This class tests the RecruitingCompany class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingCompanyTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingCompanyTest
  */
 class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
 {
@@ -136,7 +136,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests the save function when an update is required.
      *
-     * @param   RecruitingCompany $RecruitingCompany - an existing company
+     * @param RecruitingCompany $RecruitingCompany - an existing company
      *
      * @depends testSaveInsert
      */

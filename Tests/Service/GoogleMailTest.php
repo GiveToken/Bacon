@@ -6,7 +6,7 @@ use \Sizzle\Bacon\Service\GoogleMail;
 /**
  * This class tests the GoogleMail class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/GoogleMailTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/GoogleMailTest
  */
 class GoogleMailTest
 extends \PHPUnit_Framework_TestCase

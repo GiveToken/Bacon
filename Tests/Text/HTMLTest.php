@@ -6,7 +6,7 @@ use Sizzle\Bacon\Text\HTML;
 /**
  * This class tests the HTML class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Text/HTMLTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Text/HTMLTest
  */
 class HTMLTest extends \PHPUnit_Framework_TestCase
 {

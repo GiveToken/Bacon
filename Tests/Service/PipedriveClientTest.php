@@ -7,7 +7,7 @@ use \Sizzle\Bacon\Service\PipedriveClient;
 /**
  * This class tests the Pipedrive class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/PipedriveClientTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Service/PipedriveClientTest
  */
 class PipedriveClientTest extends \PHPUnit_Framework_TestCase
 {

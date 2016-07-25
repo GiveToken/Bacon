@@ -39,7 +39,7 @@ class WebRequest extends \Sizzle\Bacon\DatabaseEntity
     /**
      * Mark the web request as being part of an experiment
      *
-     * @param int $id - the experiment_id of the experiement
+     * @param int    $id      - the experiment_id of the experiement
      * @param string $version - the visitor cookie from the user's browser
      *
      * @return boolean - success marking it

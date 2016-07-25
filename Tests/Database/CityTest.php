@@ -6,7 +6,7 @@ use Sizzle\Bacon\Database\City;
 /**
  * This class tests the City class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/CityTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/CityTest
  */
 class CityTest extends \PHPUnit_Framework_TestCase
 {

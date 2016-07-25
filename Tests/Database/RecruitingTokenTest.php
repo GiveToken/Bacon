@@ -9,7 +9,7 @@ use \Sizzle\Bacon\Database\{
 /**
  * This class tests the RecruitingToken class
  *
- * ./vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingTokenTest
+ * vendor/bin/phpunit --bootstrap src/tests/autoload.php src/Bacon/Tests/Database/RecruitingTokenTest
  */
 class RecruitingTokenTest
 extends \PHPUnit_Framework_TestCase

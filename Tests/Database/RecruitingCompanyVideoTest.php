@@ -9,7 +9,7 @@ use \Sizzle\Bacon\{
 /**
  * This class tests the RecruitingCompanyVideo class
  *
- * ./vendor/bin/phpunit --bootstrap src/Tests/autoload.php src/Bacon/Tests/Database/RecruitingCompanyVideoTest
+ * vendor/bin/phpunit --bootstrap src/Tests/autoload.php src/Bacon/Tests/Database/RecruitingCompanyVideoTest
  */
 class RecruitingCompanyVideoTest
 extends \PHPUnit_Framework_TestCase
