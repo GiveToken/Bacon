@@ -6,7 +6,7 @@ namespace Sizzle\Bacon\Database;
  */
 class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
 {
-    protected $user_id;
+    protected $organization_id;
     protected $name;
     protected $description;
     protected $logo;
@@ -29,9 +29,8 @@ class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
         return  $this->execute_query(
             "SELECT recruiting_company.id,
             CONCAT(COALESCE(recruiting_company.`name`,''), ' (',  COALESCE(organization.`name`, 'No organization'), ')') AS `name`
-            FROM recruiting_company, user
-            LEFT JOIN organization ON user.organization_id = organization.id
-            WHERE recruiting_company.user_id = user.id
+            FROM recruiting_company
+            LEFT JOIN organization ON recruiting_company.organization_id = organization.id
             ORDER BY `name`"
         )->fetch_all(MYSQLI_ASSOC);
     }

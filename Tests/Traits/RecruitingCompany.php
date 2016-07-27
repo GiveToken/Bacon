@@ -8,27 +8,27 @@ use Sizzle\Bacon\Database\RecruitingCompany;
  */
 trait RecruitingCompany
 {
-    use \Sizzle\Bacon\Tests\Traits\User;
+    use \Sizzle\Bacon\Tests\Traits\Organization;
 
     protected $recruitingCompanies = array();
 
     /**
      * Create a RecruitingCompany for testing
      *
-     * @param int $user_id = (optional) user id of company owner
+     * @param int $organization_id = (optional) organization id of company owner
      *
      * @return RecruitingCompany - the new RecruitingCompany
      */
-    protected function createRecruitingCompany($user_id = null)
+    protected function createRecruitingCompany($organization_id = null)
     {
-        if (!isset($user_id)) {
-            $user = $this->createUser();
-            $user_id = $user->id;
+        if (!isset($organization_id)) {
+            $organization = $this->createOrganization();
+            $organization_id = $organization->id;
         }
 
         // create an RecruitingCompany for testing
         $recruitingCompany = new RecruitingCompany();
-        $recruitingCompany->user_id = $user_id;
+        $recruitingCompany->organization_id = $organization_id;
         $recruitingCompany->name = 'The '.rand().' Company';
         $recruitingCompany->save();
         $this->recruitingCompanies[] = $recruitingCompany->id;

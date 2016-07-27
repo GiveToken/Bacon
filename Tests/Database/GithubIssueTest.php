@@ -52,7 +52,7 @@ extends \PHPUnit_Framework_TestCase
         $this->assertEquals($GithubIssue2->id, $id);
         $this->assertEquals($GithubIssue2->repository, $repository);
         $this->assertEquals($GithubIssue2->issue, $issue);
-        $this->assertEquals($GithubIssue2->closed, 'N');
+        $this->assertEquals($GithubIssue2->closed, 'No');
     }
 
 
@@ -71,9 +71,9 @@ extends \PHPUnit_Framework_TestCase
         $GithubIssue->close();
 
         // Check closed
-        $this->assertEquals($GithubIssue->closed, 'Y');
+        $this->assertEquals($GithubIssue->closed, 'Yes');
         $GithubIssue2 = new GithubIssue($id);
-        $this->assertEquals($GithubIssue2->closed, 'Y');
+        $this->assertEquals($GithubIssue2->closed, 'Yes');
 
         $repository = 'repo'.rand();
         $issue = rand();
@@ -84,10 +84,10 @@ extends \PHPUnit_Framework_TestCase
 
         // Check closed
         $GithubIssue4 = new GithubIssue($id);
-        $this->assertEquals($GithubIssue4->closed, 'N');
+        $this->assertEquals($GithubIssue4->closed, 'No');
         $GithubIssue4->close();
-        $this->assertEquals($GithubIssue4->closed, 'Y');
+        $this->assertEquals($GithubIssue4->closed, 'Yes');
         $GithubIssue5 = new GithubIssue($id);
-        $this->assertEquals($GithubIssue5->closed, 'Y');
+        $this->assertEquals($GithubIssue5->closed, 'Yes');
     }
 }
