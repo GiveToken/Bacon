@@ -19,7 +19,6 @@ class User extends \Sizzle\Bacon\DatabaseEntity
     protected $admin = "N";
     protected $stripe_id;
     protected $active_until;
-    protected $access_token;
     protected $position;
     protected $linkedin;
     protected $face_image;
@@ -81,19 +80,6 @@ class User extends \Sizzle\Bacon\DatabaseEntity
             $user = $result->fetch_object("Sizzle\Bacon\Database\User");
         }
         return $user;
-    }
-
-    /**
-     * Updates the access token of the user
-     *
-     * @param string $token - the value of the new access token
-     */
-    public function update_token(string $token = null)
-    {
-        if ($token !== null) {
-            $token = $this->escape_string($token);
-            $this->execute_query("UPDATE user set access_token = '".$token."' WHERE id = '$this->id'");
-        }
     }
 
     /**

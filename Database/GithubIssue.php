@@ -6,11 +6,9 @@ namespace Sizzle\Bacon\Database;
  */
 class GithubIssue extends \Sizzle\Bacon\DatabaseEntity
 {
-    protected $id;
     protected $repository;
     protected $issue;
     protected $closed;
-    protected $created;
 
     /**
      * Constructs the class from an optional id
@@ -23,8 +21,7 @@ class GithubIssue extends \Sizzle\Bacon\DatabaseEntity
             $id = (int) $id;
             $token = $this->execute_query(
                 "SELECT * FROM github_issue
-                WHERE id = '$id'
-                AND deleted IS NULL"
+                WHERE id = '$id'"
             )->fetch_object("Sizzle\Bacon\Database\GithubIssue");
             if (is_object($token)) {
                 foreach (get_object_vars($token) as $key => $value) {
@@ -59,7 +56,7 @@ class GithubIssue extends \Sizzle\Bacon\DatabaseEntity
     public function close()
     {
         if (isset($this->id)) {
-            $this->closed = 'Y';
+            $this->closed = 'Yes';
             $this->save();
             return true;
         }

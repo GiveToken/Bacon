@@ -4,7 +4,7 @@ namespace Sizzle\Bacon\Tests\Database;
 use Sizzle\Bacon\{
     Connection,
     Database\RecruitingCompany,
-    Database\User
+    Database\Organization
 };
 
 /**
@@ -14,8 +14,10 @@ use Sizzle\Bacon\{
  */
 class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
 {
-    use \Sizzle\Bacon\Tests\Traits\Organization;
-    use \Sizzle\Bacon\Tests\Traits\RecruitingToken;
+    use \Sizzle\Bacon\Tests\Traits\Organization, \Sizzle\Bacon\Tests\Traits\RecruitingToken {
+        \Sizzle\Bacon\Tests\Traits\Organization::createOrganization insteadof \Sizzle\Bacon\Tests\Traits\RecruitingToken;
+        \Sizzle\Bacon\Tests\Traits\Organization::deleteOrganizations insteadof \Sizzle\Bacon\Tests\Traits\RecruitingToken;
+    }
 
     /**
      * Creates test user
@@ -23,7 +25,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // setup test user
-        $this->User = $this->createUser();
+        $this->Organization = $this->createOrganization();
     }
 
     /**
@@ -38,7 +40,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse(isset($RecruitingCompany->name));
 
         // $id specified case
-        $user_id = $this->User->id;
+        $org_id = $this->Organization->id;
         $name = rand().' Inc.';
         $logo = rand().'.jpg';
         $website = 'www.'.rand().'com';
@@ -50,7 +52,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         $google_plus = 'g'.rand();
         $pinterest = 'p'.rand();
         $query = "INSERT INTO recruiting_company (
-                      `user_id`,
+                      `organization_id`,
                       `name`,
                       `logo`,
                       `website`,
@@ -62,7 +64,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
                       `google_plus`,
                       `pinterest`
                   ) VALUES (
-                      '$user_id',
+                      '$org_id',
                       '$name',
                       '$logo',
                       '$website',
@@ -74,13 +76,13 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
                       '$google_plus',
                       '$pinterest'
                   )";
-        $this->User->execute_query($query);
+        $this->Organization->execute_query($query);
         $id = Connection::$mysqli->insert_id;
         $result = new RecruitingCompany($id);
         $this->recruitingCompanies[] = $result->id;
         $this->assertTrue(isset($result->name));
         $this->assertEquals($result->id, $id);
-        $this->assertEquals($result->user_id, $user_id);
+        $this->assertEquals($result->organization_id, $org_id);
         $this->assertEquals($result->name, $name);
         $this->assertEquals($result->logo, $logo);
         $this->assertEquals($result->website, $website);
@@ -101,7 +103,7 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         // test saving a new recruiting company
         $RecruitingCompany = new RecruitingCompany();
         $this->recruitingCompanies[] = $RecruitingCompany->id;
-        $RecruitingCompany->user_id = $this->User->id;
+        $RecruitingCompany->organization_id = $this->Organization->id;
         $RecruitingCompany->name = rand().' Inc.';
         $RecruitingCompany->logo = rand().'.png';
         $RecruitingCompany->website = 'www.'.rand().'com';
@@ -170,15 +172,8 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
     {
         // test company with organization
         $org = $this->createOrganization();
-        $co = $this->createRecruitingCompany();
-        $user = new User($co->user_id);
-        $user->organization_id = $org->id;
-        $user->save();
+        $co = $this->createRecruitingCompany($org->id);
         $name = "{$co->name} ({$org->name})";
-
-        // test company without organization
-        $co2 = $this->createRecruitingCompany();
-        $name2 = "{$co->name} (No organization)";
 
         // call & compare
         $sql = 'SELECT COUNT(*) AS companies FROM recruiting_company';

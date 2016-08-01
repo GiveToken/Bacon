@@ -78,9 +78,12 @@ extends \PHPUnit_Framework_TestCase
     public function testGetUserCompanies()
     {
         // create some companies for the user
-        $co1 = $this->createRecruitingCompany($this->User->id);
-        $co2 = $this->createRecruitingCompany($this->User->id);
-        $co3 = $this->createRecruitingCompany($this->User->id);
+        $org = $this->createOrganization();
+        $co1 = $this->createRecruitingCompany($org->id);
+        $co2 = $this->createRecruitingCompany($org->id);
+        $co3 = $this->createRecruitingCompany($org->id);
+        $this->User->organization_id = $org->id;
+        $this->User->save();
 
         $companies = (new RecruitingToken())->getUserCompanies($this->User->id);
         $this->assertEquals(3, count($companies));
@@ -112,7 +115,8 @@ extends \PHPUnit_Framework_TestCase
      */
     public function testGetCompany()
     {
-        $co = $this->createRecruitingCompany($this->User->id);
+        $org = $this->createOrganization();
+        $co = $this->createRecruitingCompany($org->id);
 
         $result = $this->createRecruitingToken($this->User->id, $co->id);
 
@@ -121,7 +125,7 @@ extends \PHPUnit_Framework_TestCase
         $this->assertNotEquals('', $company);
         $this->assertEquals($co->id, $company->id);
         $this->assertEquals($co->name, $company->name);
-        $this->assertEquals($this->User->id, $company->user_id);
+        $this->assertEquals($org->id, $company->organization_id);
     }
 
     /**

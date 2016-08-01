@@ -96,9 +96,10 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
     public function getUserCompanies(int $user_id)
     {
         $user_id = (int) $user_id;
-        $query = "SELECT id, `name`
-                  FROM recruiting_company
-                  WHERE user_id = '$user_id'";
+        $query = "SELECT recruiting_company.id, recruiting_company.`name`
+                  FROM recruiting_company, user
+                  WHERE user.id = '$user_id'
+                  AND user.organization_id = recruiting_company.organization_id";
         $results = $this->execute_query($query);
         return $results->fetch_all(MYSQLI_ASSOC);
     }
@@ -204,7 +205,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return boolean - success/fail
      */
-    public function addCity(int $city_id) 
+    public function addCity(int $city_id)
     {
         if (0 < (int) $city_id && 0 < (int) $this->id) {
             $id = (new RecruitingTokenCity())->create($city_id, (int) $this->id);
@@ -221,7 +222,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return boolean - success/fail
      */
-    public function removeCity(int $city_id) 
+    public function removeCity(int $city_id)
     {
         $sql = "SELECT id
                 FROM recruiting_token_city
@@ -244,7 +245,7 @@ class RecruitingToken extends \Sizzle\Bacon\DatabaseEntity
      *
      * @return boolean - success/fail
      */
-    public function removeImages() 
+    public function removeImages()
     {
         $sql = "SELECT id
                 FROM recruiting_token_image

@@ -8,10 +8,7 @@ use Sizzle\Bacon\Database\RecruitingToken;
  */
 trait RecruitingToken
 {
-    use RecruitingCompany, User {
-        User::createUser insteadof RecruitingCompany;
-        User::deleteUsers insteadof RecruitingCompany;
-    }
+    use RecruitingCompany, User;
 
     protected $recruitingTokens = array();
 
