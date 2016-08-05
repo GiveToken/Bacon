@@ -37,15 +37,11 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         $recruiting_token_id = (int) $recruiting_token_id;
-        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
+        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name, recruiting_company_image.mobile
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.id = '$recruiting_token_id'";
-        $results = $this->execute_query($query);
-        while ($row = $results->fetch_assoc()) {
-            $return[] = $row;
-        }
-        return $return;
+        return $this->execute_query($query)->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -59,15 +55,11 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         $long_id = $this->escape_string($long_id);
-        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
+        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name, recruiting_company_image.mobile
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.long_id = '$long_id'";
-        $results = $this->execute_query($query);
-        while ($row = $results->fetch_assoc()) {
-            $return[] = $row;
-        }
-        return $return;
+        return $this->execute_query($query)->fetch_all(MYSQLI_ASSOC);
     }
 
     /**
@@ -118,5 +110,23 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
             }
         }
         return $success;
+    }
+
+    /**
+     * Marks this image as mobile
+     */
+    public function markMobile()
+    {
+        $sql = "UPDATE recruiting_company_image SET mobile = 'Y' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
+    }
+
+    /**
+     * Marks this image as not mobile
+     */
+    public function unmarkMobile()
+    {
+        $sql = "UPDATE recruiting_company_image SET mobile = 'N' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
     }
 }
