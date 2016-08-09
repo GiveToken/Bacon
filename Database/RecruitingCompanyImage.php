@@ -8,6 +8,8 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
 {
     protected $recruiting_company_id;
     protected $file_name;
+    protected $mobile;
+    protected $logo;
 
     /**
      * This function creates an entry in the recruiting_company_image table
@@ -127,6 +129,24 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     public function unmarkMobile()
     {
         $sql = "UPDATE recruiting_company_image SET mobile = 'N' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
+    }
+
+    /**
+     * Marks this image as logo
+     */
+    public function markLogo()
+    {
+        $sql = "UPDATE recruiting_company_image SET logo = 'Y' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
+    }
+
+    /**
+     * Marks this image as not logo
+     */
+    public function unmarkLogo()
+    {
+        $sql = "UPDATE recruiting_company_image SET logo = 'N' WHERE id = '$this->id'";
         return $this->execute_query($sql);
     }
 }
