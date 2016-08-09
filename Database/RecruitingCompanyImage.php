@@ -58,7 +58,7 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
         $return = array();
         $long_id = $this->escape_string($long_id);
         $query = "SELECT recruiting_company_image.id,
-                  recruiting_company_image.file_name, 
+                  recruiting_company_image.file_name,
                   recruiting_company_image.mobile,
                   recruiting_company_image.logo
                   FROM recruiting_company_image, recruiting_token
@@ -78,7 +78,10 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         $id = (int) $id;
-        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
+        $query = "SELECT recruiting_company_image.id,
+                  recruiting_company_image.file_name, 
+                  recruiting_company_image.mobile,
+                  recruiting_company_image.logo
                   FROM recruiting_company_image
                   WHERE recruiting_company_image.recruiting_company_id = '$id'";
         $results = $this->execute_query($query);
