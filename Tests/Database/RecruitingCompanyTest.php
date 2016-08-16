@@ -42,7 +42,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         // $id specified case
         $org_id = $this->Organization->id;
         $name = rand().' Inc.';
-        $logo = rand().'.jpg';
         $website = 'www.'.rand().'com';
         $values = 'obaoyibrebearbvreb ivy beriyvbreyb eroyb eroayvb '.rand();
         $facebook = 'f'.rand();
@@ -54,7 +53,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         $query = "INSERT INTO recruiting_company (
                       `organization_id`,
                       `name`,
-                      `logo`,
                       `website`,
                       `values`,
                       `facebook`,
@@ -66,7 +64,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
                   ) VALUES (
                       '$org_id',
                       '$name',
-                      '$logo',
                       '$website',
                       '$values',
                       '$facebook',
@@ -84,7 +81,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($result->id, $id);
         $this->assertEquals($result->organization_id, $org_id);
         $this->assertEquals($result->name, $name);
-        $this->assertEquals($result->logo, $logo);
         $this->assertEquals($result->website, $website);
         $this->assertEquals($result->values, $values);
         $this->assertEquals($result->facebook, $facebook);
@@ -105,7 +101,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
         $this->recruitingCompanies[] = $RecruitingCompany->id;
         $RecruitingCompany->organization_id = $this->Organization->id;
         $RecruitingCompany->name = rand().' Inc.';
-        $RecruitingCompany->logo = rand().'.png';
         $RecruitingCompany->website = 'www.'.rand().'com';
         $RecruitingCompany->values = 'For great justice, '.rand();
         $RecruitingCompany->facebook = 'f'.rand();
@@ -146,7 +141,6 @@ class RecruitingCompanyTest extends \PHPUnit_Framework_TestCase
     {
         // set new values
         $RecruitingCompany->name = rand().' Co.';
-        $RecruitingCompany->logo = rand().'.gif';
         $RecruitingCompany->website = 'test.'.rand().'com';
         $RecruitingCompany->values = 'To build a '.rand();
         $RecruitingCompany->facebook = 'fa'.rand();

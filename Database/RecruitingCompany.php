@@ -9,7 +9,6 @@ class RecruitingCompany extends \Sizzle\Bacon\DatabaseEntity
     protected $organization_id;
     protected $name;
     protected $description;
-    protected $logo;
     protected $website;
     protected $values;
     protected $facebook;

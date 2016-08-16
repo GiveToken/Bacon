@@ -129,6 +129,7 @@ class User extends \Sizzle\Bacon\DatabaseEntity
         $profile = $this->execute_query(
             "SELECT user.first_name,
             user.last_name,
+            user.email_address,
             user.position,
             user.linkedin,
             organization.website,

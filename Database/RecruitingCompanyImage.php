@@ -8,6 +8,8 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
 {
     protected $recruiting_company_id;
     protected $file_name;
+    protected $mobile;
+    protected $logo;
 
     /**
      * This function creates an entry in the recruiting_company_image table
@@ -55,7 +57,10 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         $long_id = $this->escape_string($long_id);
-        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name, recruiting_company_image.mobile
+        $query = "SELECT recruiting_company_image.id,
+                  recruiting_company_image.file_name,
+                  recruiting_company_image.mobile,
+                  recruiting_company_image.logo
                   FROM recruiting_company_image, recruiting_token
                   WHERE recruiting_company_image.recruiting_company_id = recruiting_token.recruiting_company_id
                   AND recruiting_token.long_id = '$long_id'";
@@ -73,7 +78,10 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     {
         $return = array();
         $id = (int) $id;
-        $query = "SELECT recruiting_company_image.id, recruiting_company_image.file_name
+        $query = "SELECT recruiting_company_image.id,
+                  recruiting_company_image.file_name, 
+                  recruiting_company_image.mobile,
+                  recruiting_company_image.logo
                   FROM recruiting_company_image
                   WHERE recruiting_company_image.recruiting_company_id = '$id'";
         $results = $this->execute_query($query);
@@ -127,6 +135,24 @@ class RecruitingCompanyImage extends \Sizzle\Bacon\DatabaseEntity
     public function unmarkMobile()
     {
         $sql = "UPDATE recruiting_company_image SET mobile = 'N' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
+    }
+
+    /**
+     * Marks this image as logo
+     */
+    public function markLogo()
+    {
+        $sql = "UPDATE recruiting_company_image SET logo = 'Y' WHERE id = '$this->id'";
+        return $this->execute_query($sql);
+    }
+
+    /**
+     * Marks this image as not logo
+     */
+    public function unmarkLogo()
+    {
+        $sql = "UPDATE recruiting_company_image SET logo = 'N' WHERE id = '$this->id'";
         return $this->execute_query($sql);
     }
 }
